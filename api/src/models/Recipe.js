@@ -8,10 +8,9 @@ module.exports = (sequelize) => {
   //REVISAR SI LOS VALORES Y TIPOS SON APROPIADOS
   sequelize.define("recipe", {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       primaryKey: true,
-      autoIncrement: true,
-      allowNull: false,
+      defaultValue: DataTypes.UUIDV1
     },
     name: {
       type: DataTypes.STRING,

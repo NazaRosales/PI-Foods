@@ -25,7 +25,7 @@ recipesRouter.get("/name", async (req, res) => {
 recipesRouter.get("/:idRecipe", async (req, res) => {
   const { idRecipe } = req.params;
   try {
-    const recipe = await Recipe.findByPk(parseInt(idRecipe));
+    const recipe = await Recipe.findByPk(idRecipe);
     res.status(200).json(recipe);
   } catch (error) {
     res.status(500).send(error.message);
@@ -34,21 +34,18 @@ recipesRouter.get("/:idRecipe", async (req, res) => {
 
 recipesRouter.post("/", async (req, res) => {
   //CREANDO RECETA EN BD
-  const { title, image, summary, healthScore, steps, diets } = req.body;
+  const { name, image, summary, healthScore, steps, diets } = req.body;
   try {
     const recipe = await Recipe.create({
-      name: title,
+      name,
       image,
       summary,
       healthScore,
       steps,
     });
-    //creo qe esto esta mal, creo que habria que crear la tabla diets
-    if (diets && diets.length > 0) {
-      await recipe.addDiets(diets);
-    }
 
-    res.status(200).json({ message: `Receta creada exitosamente...` });
+    res.status(200).json({recipe});
+
   } catch (error) {
     res.status(500).send(error.message);
   }
