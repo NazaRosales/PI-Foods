@@ -2,6 +2,8 @@ const express = require("express");
 const { Recipe } = require("../db.js");
 const { Op } = require("sequelize");
 const recipesRouter = express.Router();
+const getRecipeFromApi = require("../helpers/getRecipeFromAPI.js");
+const isUUID = require("../helpers/isUUID.js");
 
 recipesRouter.get("/name", async (req, res) => {
   const { name } = req.query;
@@ -25,8 +27,13 @@ recipesRouter.get("/name", async (req, res) => {
 recipesRouter.get("/:idRecipe", async (req, res) => {
   const { idRecipe } = req.params;
   try {
-    const recipe = await Recipe.findByPk(idRecipe);
-    res.status(200).json(recipe);
+    if (isUUID(idRecipe)) {
+      const recipe = await Recipe.findByPk(idRecipe);
+      res.status(200).json(recipe);
+    } else {
+      const recipeFromAPI = await getRecipeFromApi(idRecipe);
+      res.status(200).json(recipeFromAPI);
+    }
   } catch (error) {
     res.status(500).send(error.message);
   }
@@ -44,8 +51,7 @@ recipesRouter.post("/", async (req, res) => {
       steps,
     });
 
-    res.status(200).json({recipe});
-
+    res.status(200).json({ recipe });
   } catch (error) {
     res.status(500).send(error.message);
   }
