@@ -2,8 +2,10 @@ const express = require("express");
 const { Recipe } = require("../db.js");
 const { Op } = require("sequelize");
 const recipesRouter = express.Router();
-const getRecipeFromApi = require("../helpers/getRecipeFromAPI.js");
-const isUUID = require("../helpers/isUUID.js");
+const getRecipeById = require("../controllers/recipeById.js");
+const getRecipeByName = require("../controllers/recipeByName.js")
+const isUUID = require("../controllers/isUUID.js");
+const postRecipe = require('../controllers/postRecipe.js')
 
 recipesRouter.get("/name", async (req, res) => {
   const { name } = req.query;
@@ -26,35 +28,29 @@ recipesRouter.get("/name", async (req, res) => {
 
 recipesRouter.get("/:idRecipe", async (req, res) => {
   const { idRecipe } = req.params;
+
   try {
-    if (isUUID(idRecipe)) {
-      const recipe = await Recipe.findByPk(idRecipe);
-      res.status(200).json(recipe);
-    } else {
-      const recipeFromAPI = await getRecipeFromApi(idRecipe);
-      res.status(200).json(recipeFromAPI);
-    }
+    let result;
+    if(isUUID(idRecipe)) result = await getRecipeById(idRecipe);
+    else result = await getRecipeById(parseInt(idRecipe))
+    res.status(200).json(result);
   } catch (error) {
     res.status(500).send(error.message);
   }
+
 });
 
 recipesRouter.post("/", async (req, res) => {
   //CREANDO RECETA EN BD
-  const { name, image, summary, healthScore, steps, diets } = req.body;
-  try {
-    const recipe = await Recipe.create({
-      name,
-      image,
-      summary,
-      healthScore,
-      steps,
-    });
+  const {title, summary, healthScore, step, score, image, diet} = req.body;
 
-    res.status(200).json({ recipe });
-  } catch (error) {
-    res.status(500).send(error.message);
-  }
+  try {
+    const result = await postRecipe(title, summary, healthScore, step, score, image, diet)
+    res.status(201).json(result)
+
+} catch (error) {
+    res.status(400).json({error: error.message})
+}
 });
 
 module.exports = recipesRouter;
