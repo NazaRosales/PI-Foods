@@ -24,7 +24,7 @@ const postRecipe = async (
   //el metodo findOrCreate del modelo diet para buscar una dieta en la Db con el mismo nombre
   //este metodo devuelve un arreglo con dos valores el primero es la dieta encontrada o creada y el segundo un boleano
 
-  diet.forEach(async (element) => {
+  diet?.forEach(async (element) => {
     const [diet, flag] = await Diets.findOrCreate({
       where: {
         name: element.toLowerCase(),
