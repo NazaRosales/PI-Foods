@@ -1,0 +1,16 @@
+body {
+  background-color: #72473b;
+}
+.navBar {
+  background-color: #472d25;
+  box-shadow: 0px 5px 5px 0px #000000b2;
+  margin-top: 10px;
+  display: flex;
+}
+
+.navItem {
+  margin: 10px;
+}
+.search input {
+  margin-right: 10px;
+}
