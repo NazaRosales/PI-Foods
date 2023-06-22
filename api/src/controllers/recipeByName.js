@@ -13,7 +13,7 @@ const getRecipeByName = async (req, res, name) => {
     });
 
     if (recipes.length > 0) {
-      res.status(200).json(recipes);
+     return res.status(200).json(recipes);
     } else {
       const recipeApi = await recipeFromApi(name);
       if (recipeApi.length > 0) {

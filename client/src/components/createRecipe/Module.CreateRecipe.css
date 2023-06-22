@@ -1,0 +1,17 @@
+.container {
+    width: 400px;
+  margin-top: 10%;
+  border: 1px solid #ddd;
+  background-color: #ccc;
+  border-radius: 5px;
+  border: 1px solid #555;
+}
+.allInputs{
+    margin: 10px;
+}
+.inputs{
+    margin-top: 5px;
+}
+.btnCreate:hover{
+    cursor: pointer;
+}

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import image from "../../img/background-landing.png";
 import "./module.Home.css";
 import { useState } from "react";
 import RecipeCard from "./RecipeCard";
@@ -14,15 +15,18 @@ export default function Home() {
     event.preventDefault();
     setSearch("");
     setRecipes(await sendRequestName(search)); //by query
-    console.log(recipes);
   };
 
   return (
     <>
+    <img className = "backImage" src={image} alt="Imagen de la landing page de comida" />
       <div className="navBar">
         <div className="navItem">
           <Link to="/">
-            <button>Home</button>
+            <button className="btn">Home</button>
+          </Link>
+          <Link to="/create-recipe">
+            <button className="btn">Create Recipe</button>
           </Link>
         </div>
 

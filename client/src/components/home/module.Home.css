@@ -11,6 +11,9 @@ body {
 .navItem {
   margin: 10px;
 }
+.btn{
+  margin-right: 10px;
+}
 .search input {
   margin-right: 10px;
 }

@@ -9,5 +9,5 @@
 .cardImage{
     width: 200px;
     border-radius: 5px;
-    border-radius: 1px solid #555;
+    border: 1px solid #555;
 }
