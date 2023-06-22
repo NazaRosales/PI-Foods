@@ -5,7 +5,7 @@ const axios = require("axios");
 const { URL_API, API_KEY } = process.env;
 const recipeFromApi = async (name) => {
   const { data } = await axios.get(
-    `${URL_API}?addRecipeInformation=true&number=100&apiKey=${API_KEY}&addRecipeInformation=true&number=25` //First 25 recipes
+    `${URL_API}complexSearch?addRecipeInformation=true&number=100&apiKey=${API_KEY}&addRecipeInformation=true&number=25` //First 25 recipes
   ); //max 25
   let result = [];
   if (data.results.length) {

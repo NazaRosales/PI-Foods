@@ -1,17 +1,11 @@
 const axios = require("axios");
-const URL_API = process.env;
-const API_KEY = process.env;
 const { Recipe } = require("../db.js");
 const getRecipeById = async (id) => {
-/*
-    ID's: 
-    782585 716426 715497 715415 716406 644387
-*/
+const {URL_API, API_KEY} = process.env;
   if(typeof(id) === "number"){
     const {data} = await axios(
-      `http://localhost:8080/recipes/${id}/information?apiKey=${API_KEY}`
-    )
-    
+      `${URL_API}${id}/information?apiKey=${API_KEY}`
+    )    
     return({
       id: data.id,
       title: data.title,
