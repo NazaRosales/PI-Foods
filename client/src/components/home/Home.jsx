@@ -76,6 +76,7 @@ export default function Home() {
         recipes?.length > 0 && recipes?.map((recipe) => {
           return <RecipeCard 
                 key = {recipe?.id} 
+                id = {recipe?.id} 
                 image={recipe?.image} 
                 title={recipe?.title} 
                 diet={recipe?.diet} 
