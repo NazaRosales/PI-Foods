@@ -1,10 +1,14 @@
 const sendRequestName = (input) => {
+    if(!input || typeof input !== 'string'){
+        console.log('error en el input')
+        return;
+    }
   const URL = "http://localhost:3001/recipes/name";
   const params = { name: input };
   const queryString = new URLSearchParams(params).toString(); 
-  console.log(`${URL}?${queryString}`);
+  const reqURL =`${URL}?${queryString}`;
 
-  fetch(`${URL}?${queryString}`) //sending a query request by name
+  fetch(reqURL) //sending a query request by name
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
