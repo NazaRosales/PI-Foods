@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function LandingPage() {
   return (
-    <div className="container">
+    <div className="landing">
       <div className="menu">
         <h1>PI Food - Nazareno Rosales</h1>
         <Link to='/home'>
