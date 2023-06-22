@@ -8,13 +8,14 @@ const sendRequestName = (input) => {
   const queryString = new URLSearchParams(params).toString(); 
   const reqURL =`${URL}?${queryString}`;
 
-  fetch(reqURL) //sending a query request by name
+  const response = fetch(reqURL) //sending a query request by name
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      return(data)
     })
     .catch((error) => {
       console.error("Error:", error);
     });
+    return(response)
 };
 module.exports = sendRequestName;

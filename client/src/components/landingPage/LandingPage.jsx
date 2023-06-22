@@ -12,7 +12,7 @@ export default function LandingPage() {
           <button> Go Home</button>
         </Link>
       </div>
-      <img src={image} alt="Imagen de la landing page de comida" />
+      <img className = "backImage" src={image} alt="Imagen de la landing page de comida" />
     </div>
   );
 }
