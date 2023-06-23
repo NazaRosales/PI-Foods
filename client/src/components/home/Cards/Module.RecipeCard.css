@@ -17,6 +17,9 @@
     background-color: #ccc;
     border: 1px solid #ccc;
 }
+.link{
+    text-decoration: none;
+}
 .cardTitle{
     font-size: 10px;
     font-weight: 800;
