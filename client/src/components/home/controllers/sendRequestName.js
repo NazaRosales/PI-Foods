@@ -18,6 +18,6 @@ const sendRequestName = (input) => {
     });
     return(response)
 };
-module.exports = sendRequestName;
+export default sendRequestName;
 
 

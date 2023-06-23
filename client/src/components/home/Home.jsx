@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
 import "./module.Home.css";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import RecipeCard from "./Cards/RecipeCard.jsx";
-const sendRequestName = require("./controllers/sendRequestName.js");
+import sendRequestName from "./controllers/sendRequestName.js";
 
 export default function Home() {
   const [search, setSearch] = useState("");
@@ -18,17 +18,16 @@ export default function Home() {
 
   return (
     <>
+      <div className="navItem">
+        <Link to="/">
+          <button className="btn">Exit</button>
+        </Link>
+        <Link to="/create-recipe">
+          <button className="btn">Create Recipe</button>
+        </Link>
+      </div>
       <form type="submit" className="search" onSubmit={handleSubmit}>
         <div className="navBar">
-          <div className="navItem">
-            <Link to="/">
-              <button className="btn">Home</button>
-            </Link>
-            <Link to="/create-recipe">
-              <button className="btn">Create Recipe</button>
-            </Link>
-          </div>
-
           <div className="navItem">
             <select name="filet">
               <optgroup label="Order by:">
