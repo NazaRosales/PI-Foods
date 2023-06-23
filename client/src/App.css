@@ -3,3 +3,42 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+button{
+  background-color: #ffffff;
+  border: 1px solid #727272;
+  color: #333;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+button:hover {
+  background-color: #333;
+  color: #ffffff;
+}
+.input-label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.text-input,
+.number-input,
+.textarea-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #333;
+  transition: border-color 0.3s ease;
+}
+
+.text-input:focus,
+.number-input:focus,
+.textarea-input:focus {
+  outline: none;
+  border-color: #333;
+}

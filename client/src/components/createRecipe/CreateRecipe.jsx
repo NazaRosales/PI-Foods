@@ -38,8 +38,9 @@ export default function CreateRecipe() {
       <div className="container">
         <form className="allInputs" onSubmit={handleSubmit}>
           <div className="inputs">
-            <label>Recipe Name:</label>
+            <label className = "input-label">Recipe Name:</label>
             <input
+               className = "text-input"
               onChange={handleChange}
               type="text"
               name="title"
@@ -49,8 +50,8 @@ export default function CreateRecipe() {
           </div>
 
           <div className="inputs">
-            <label>URL image:</label>
-            <input
+            <label className = "input-label">URL image:</label>
+            <input className = "text-input"
               onChange={handleChange}
               type="url"
               name="image"
@@ -59,8 +60,8 @@ export default function CreateRecipe() {
             />
           </div>
           <div className="inputs">
-            <label>Summary</label>
-            <input
+            <label className = "input-label">Summary</label>
+            <input className = "text-input"
               onChange={handleChange}
               type="text"
               name="summary"
@@ -71,8 +72,9 @@ export default function CreateRecipe() {
           </div>
 
           <div className="inputs">
-            <label>Health Score:</label>
+            <label className = "input-label">Health Score:</label>
             <input
+            className="number-input"
               name="score"
               value={recipe.score}
               onChange={handleChange}
@@ -85,8 +87,8 @@ export default function CreateRecipe() {
           </div>
 
           <div className="inputs">
-            <label>Steps:</label>
-            <input
+            <label className = "input-label">Steps:</label>
+            <input className = "text-input"
               name="step"
               value={recipe.step}
               onChange={handleChange}
@@ -96,8 +98,8 @@ export default function CreateRecipe() {
             />
           </div>
           <div className="inputs">
-            <label>Diets:</label>
-            <textarea
+            <label className = "input-label">Diets:</label>
+            <textarea className = "textarea-input"
               onChange={handleChange}
               type="text"
               name="diet"

@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./Module.Detail.css";
 export default function Detail() {
@@ -11,13 +11,18 @@ export default function Detail() {
       .then((data) => setRecipe(data));
   }, [URL]);
   return (
-    <section className="detail">
-      <h2>{recipe.title}</h2>
-      <img src={recipe.image} alt={recipe.title} className="imageFood"></img>
-      <p>{recipe.summary}</p>
-      <p>{recipe.diet}</p>
-      <p>Health Score: {recipe.healthScore}</p>
-      <p>Preparation: {recipe.step}</p>
-    </section>
+    <>
+      <Link to="/home">
+        <button> Go back</button>
+      </Link>
+      <section className="detail">
+        <h2>{recipe.title}</h2>
+        <img src={recipe.image} alt={recipe.title} className="imageFood"></img>
+        <p>{recipe.summary}</p>
+        <p>{recipe.diet}</p>
+        <p>Health Score: {recipe.healthScore}</p>
+        <p>Preparation: {recipe.step}</p>
+      </section>
+    </>
   );
 }
