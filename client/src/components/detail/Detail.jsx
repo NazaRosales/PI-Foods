@@ -10,18 +10,30 @@ export default function Detail() {
       .then((response) => response.json())
       .then((data) => setRecipe(data));
   }, [URL]);
+  const dietString = recipe?.diet?.join(", ") + ".";
+
+  console.log(recipe);
   return (
     <>
       <Link to="/home">
         <button> Go back</button>
       </Link>
       <section className="detail">
-        <h2>{recipe.title}</h2>
-        <img src={recipe.image} alt={recipe.title} className="imageFood"></img>
-        <p>{recipe.summary}</p>
-        <p>{recipe.diet}</p>
-        <p>Health Score: {recipe.healthScore}</p>
-        <p>Preparation: {recipe.step}</p>
+        <div>
+          <h2>{recipe?.title}</h2>
+          <img
+            src={recipe?.image}
+            alt={recipe?.title}
+            className="imageFood"
+          ></img>
+        </div>
+
+        <div>
+          <p>{recipe?.summary}</p>
+          <p>{dietString}</p>
+          <p>Health Score: {recipe?.healthScore}</p>
+          <p>Preparation: {recipe?.steps}</p>
+        </div>
       </section>
     </>
   );
