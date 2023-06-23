@@ -1,14 +1,21 @@
 .card{
     max-width: 200px;
-    max-height: 300px;
+    max-height: 250px;
+    min-width: 200px;
+    min-height: 250px;
     margin: 10px;
     padding: 5px;
-    background-color: #ccc;
+    background-color: #ccccccce;
     color: #333;
     border: 1px solid #555;
     border-radius: 5px;
     padding: 5px;
     text-align: center;
+}
+.card:hover{
+    cursor: pointer;
+    background-color: #ccc;
+    border: 1px solid #ccc;
 }
 .cardTitle{
     font-size: 10px;
@@ -22,4 +29,8 @@
     width: 150px;
     border-radius: 5px;
     border: 1px solid #555;
+    opacity: 0.85;
 }
+.card:hover .cardImage {
+    opacity: 1;
+  }

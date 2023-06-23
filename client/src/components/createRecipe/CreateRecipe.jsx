@@ -4,12 +4,12 @@ import createRecipe from "./controllers/createRecipe.js";
 import { Link } from "react-router-dom";
 export default function CreateRecipe() {
   const [recipe, setRecipe] = useState({
-    title:"",
-    image:"",
-    summary:"",
+    title: "",
+    image: "",
+    summary: "",
     score: 0,
     step: "",
-    diet: ""
+    diet: "",
   });
 
   const handleChange = (evento) => {
@@ -22,13 +22,13 @@ export default function CreateRecipe() {
     event.preventDefault();
     createRecipe(recipe);
     setRecipe({
-      title:"",
-      image:"",
-      summary:"",
+      title: "",
+      image: "",
+      summary: "",
       score: 0,
       step: "",
       diet: "",
-    })
+    });
   };
   return (
     <>
@@ -105,8 +105,9 @@ export default function CreateRecipe() {
               placeholder="Glutten free, vegan, etc..."
             />
           </div>
-
-          <button className="btnCreate">Create</button>
+          <div className="btnContainer">
+            <button className="btnCreate">Create</button>
+          </div>
         </form>
       </div>
     </>

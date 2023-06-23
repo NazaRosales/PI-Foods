@@ -1,17 +1,27 @@
 .container {
-    width: 400px;
+  width: 400px;
   margin-top: 10%;
   border: 1px solid #ddd;
   background-color: #ccc;
   border-radius: 5px;
   border: 1px solid #555;
 }
-.allInputs{
-    margin: 10px;
+label{
+    margin-right: 5px;
 }
-.inputs{
-    margin-top: 5px;
+.allInputs {
+  margin: 10px;
 }
-.btnCreate:hover{
-    cursor: pointer;
+.inputs {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+}
+.btnContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+.btnCreate:hover {
+  cursor: pointer;
 }
