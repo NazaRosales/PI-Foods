@@ -4,7 +4,7 @@ const postRecipe = async (
   title,
   summary,
   healthScore,
-  step,
+  steps,
   score,
   image,
   diet
@@ -15,7 +15,7 @@ const postRecipe = async (
     image,
     summary,
     healthScore,
-    step,
+    steps,
     score,
     diet,
   });

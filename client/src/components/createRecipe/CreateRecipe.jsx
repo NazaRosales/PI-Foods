@@ -7,8 +7,8 @@ export default function CreateRecipe() {
     title: "",
     image: "",
     summary: "",
-    score: 0,
-    step: "",
+    healthScore: 0,
+    steps: "",
     diet: "",
   });
 
@@ -25,8 +25,8 @@ export default function CreateRecipe() {
       title: "",
       image: "",
       summary: "",
-      score: 0,
-      step: "",
+      healthScore: 0,
+      steps: "",
       diet: "",
     });
   };
@@ -75,13 +75,13 @@ export default function CreateRecipe() {
             <label className = "input-label">Health Score:</label>
             <input
             className="number-input"
-              name="score"
-              value={recipe.score}
+              name="healthScore"
+              value={recipe.healthScore}
               onChange={handleChange}
               type="number"
-              step={0.1}
+              step={1}
               min={0}
-              max={10}
+              max={100}
               placeholder="7.5"
             />
           </div>
@@ -89,8 +89,8 @@ export default function CreateRecipe() {
           <div className="inputs">
             <label className = "input-label">Steps:</label>
             <input className = "text-input"
-              name="step"
-              value={recipe.step}
+              name="steps"
+              value={recipe.steps}
               onChange={handleChange}
               type="text"
               placeholder="

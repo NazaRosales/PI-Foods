@@ -3,8 +3,10 @@ const createRecipe = (recipe) => {
 
   //trim remove spaces at end of any ,
   const arrayDiets = recipe.diet.split(",").map((diet) => diet.trim());
+  const scoreNumber = parseFloat(recipe.score)
   const formatedRecipe = {
     ...recipe,
+    score: scoreNumber,
     diet: arrayDiets,
   };
 

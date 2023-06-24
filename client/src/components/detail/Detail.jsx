@@ -8,11 +8,13 @@ export default function Detail() {
   useEffect(() => {
     fetch(URL)
       .then((response) => response.json())
-      .then((data) => setRecipe(data));
+      .then((data) => {
+        setRecipe(data)
+      });
   }, [URL]);
   const dietString = recipe?.diet?.join(", ") + ".";
 
-  console.log(recipe);
+
   return (
     <>
       <Link to="/home">

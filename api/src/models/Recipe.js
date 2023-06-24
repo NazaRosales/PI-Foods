@@ -26,13 +26,13 @@ module.exports = (sequelize) => {
       healthScore: {
         type: DataTypes.FLOAT,
       },
-      step: {
+      steps: {
         type: DataTypes.TEXT,
       },
       diet: {
         type: DataTypes.ARRAY(DataTypes.STRING), //ARRAY OF STRINGS
       },
     },
-    { timestaps: false }
+    { timestamps: false }
   );
 };

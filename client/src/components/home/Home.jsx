@@ -13,8 +13,15 @@ export default function Home() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setSearch("");
-    setRecipes(await sendRequestName(search)); //by query
+    const response = await sendRequestName(search)
+    if(response.status === 500){
+      alert("RECIPE DO NOT EXIST")
+    } else{
+      console.log(response)
+      setRecipes(response); //by query
+    }
   };
+
 
   return (
     <>

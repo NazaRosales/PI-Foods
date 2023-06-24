@@ -32,14 +32,14 @@ recipesRouter.get("/:idRecipe", async (req, res) => {
 
 recipesRouter.post("/", async (req, res) => {
   //CREANDO RECETA EN BD
-  const { title, summary, healthScore, step, score, image, diet } = req.body;
+  const { title, summary, healthScore, steps, score, image, diet } = req.body;
 
   try {
     const result = await postRecipe(
       title,
       summary,
       healthScore,
-      step,
+      steps,
       score,
       image,
       diet
