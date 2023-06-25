@@ -1,0 +1,5 @@
+export const GET_HOME_CARDS = "GET_HOME_CARDS"
+export const GET_FOOD_ID = "GET_FOOD_ID"
+export const PUT_FOOD_BY_NAME = "PUT_FOOD_BY_NAME"
+export const CREATE_RECIPE = "CREATE_RECIPE"
+export const CURRENT_PAGE = "CURRENT_PAGE"
