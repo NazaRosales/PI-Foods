@@ -9,7 +9,7 @@ export default function CreateRecipe() {
     healthScore: 0,
     steps: "",
     diet: "",
-  }); 
+  });
 
   const handleChange = (evento) => {
     setRecipe({
@@ -34,9 +34,9 @@ export default function CreateRecipe() {
       <div className="container">
         <form className="allInputs" onSubmit={handleSubmit}>
           <div className="inputs">
-            <label className = "input-label">Recipe Name:</label>
+            <label className="input-label">Recipe Name:</label>
             <input
-               className = "recipeInput"
+              className="recipeInput"
               onChange={handleChange}
               type="text"
               name="title"
@@ -46,8 +46,9 @@ export default function CreateRecipe() {
           </div>
 
           <div className="inputs">
-            <label className = "input-label">URL image:</label>
-            <input className = "recipeInput"
+            <label className="input-label">URL image:</label>
+            <input
+              className="recipeInput"
               onChange={handleChange}
               type="url"
               name="image"
@@ -56,8 +57,9 @@ export default function CreateRecipe() {
             />
           </div>
           <div className="inputs">
-            <label className = "input-label">Summary</label>
-            <input className = "recipeInput"
+            <label className="input-label">Summary</label>
+            <input
+              className="recipeInput"
               onChange={handleChange}
               type="text"
               name="summary"
@@ -68,9 +70,9 @@ export default function CreateRecipe() {
           </div>
 
           <div className="inputs">
-            <label className = "input-label">Health Score:</label>
+            <label className="input-label">Health Score:</label>
             <input
-            className="recipeInput"
+              className="recipeInput"
               name="healthScore"
               value={recipe.healthScore}
               onChange={handleChange}
@@ -78,13 +80,14 @@ export default function CreateRecipe() {
               step={0.1}
               min={0}
               max={100}
-              placeholder="7.5"
+              placeholder="80.5"
             />
           </div>
 
           <div className="inputs">
-            <label className = "input-label">Steps:</label>
-            <input className = "recipeInput"
+            <label className="input-label">Steps:</label>
+            <input
+              className="recipeInput"
               name="steps"
               value={recipe.steps}
               onChange={handleChange}
@@ -94,8 +97,9 @@ export default function CreateRecipe() {
             />
           </div>
           <div className="inputs">
-            <label className = "input-label">Diets:</label>
-            <textarea className = "recipeInput"
+            <label className="input-label">Diets:</label>
+            <textarea
+              className="recipeInput"
               onChange={handleChange}
               type="text"
               name="diet"
