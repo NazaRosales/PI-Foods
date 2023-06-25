@@ -1,22 +1,22 @@
 .container {
   width: 400px;
-  margin-top: 10%;
+  margin-top: 30px;
+  margin-left: 20%;
   border: none;
   background-color: #472d259a;
   border-radius: 5px;
-  border: 1px solid #472d259a;
   color: #ddd;
 }
 label{
     margin-right: 5px;
 }
 .allInputs {
-  margin: 10px;
+  margin: 20px;
+  padding: 20px;
 }
 .inputs {
-  margin-top: 5px;
-  display: flex;
-  align-items: center;
+  margin-top: 10px;
+  display: grid;
 }
 .btnContainer {
   display: flex;
