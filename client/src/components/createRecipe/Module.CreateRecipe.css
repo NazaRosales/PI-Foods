@@ -1,10 +1,11 @@
 .container {
   width: 400px;
   margin-top: 10%;
-  border: 1px solid #ddd;
-  background-color: #ccc;
+  border: none;
+  background-color: #472d259a;
   border-radius: 5px;
-  border: 1px solid #555;
+  border: 1px solid #472d259a;
+  color: #ddd;
 }
 label{
     margin-right: 5px;
@@ -25,3 +26,16 @@ label{
 .btnCreate:hover {
   cursor: pointer;
 }
+.recipeInput {
+  padding: 6px 10px;
+  border: none;
+  background-color: #f5f5f5;
+  color: #333;
+  font-size: 16px;
+}
+
+.recipeInput:focus {
+  outline: none;
+  box-shadow: 0px 0px 3px #f5f5f5;
+}
+

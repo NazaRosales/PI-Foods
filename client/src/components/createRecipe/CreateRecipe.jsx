@@ -36,7 +36,7 @@ export default function CreateRecipe() {
           <div className="inputs">
             <label className = "input-label">Recipe Name:</label>
             <input
-               className = "text-input"
+               className = "recipeInput"
               onChange={handleChange}
               type="text"
               name="title"
@@ -47,7 +47,7 @@ export default function CreateRecipe() {
 
           <div className="inputs">
             <label className = "input-label">URL image:</label>
-            <input className = "text-input"
+            <input className = "recipeInput"
               onChange={handleChange}
               type="url"
               name="image"
@@ -57,7 +57,7 @@ export default function CreateRecipe() {
           </div>
           <div className="inputs">
             <label className = "input-label">Summary</label>
-            <input className = "text-input"
+            <input className = "recipeInput"
               onChange={handleChange}
               type="text"
               name="summary"
@@ -70,7 +70,7 @@ export default function CreateRecipe() {
           <div className="inputs">
             <label className = "input-label">Health Score:</label>
             <input
-            className="number-input"
+            className="recipeInput"
               name="healthScore"
               value={recipe.healthScore}
               onChange={handleChange}
@@ -84,7 +84,7 @@ export default function CreateRecipe() {
 
           <div className="inputs">
             <label className = "input-label">Steps:</label>
-            <input className = "text-input"
+            <input className = "recipeInput"
               name="steps"
               value={recipe.steps}
               onChange={handleChange}
@@ -95,7 +95,7 @@ export default function CreateRecipe() {
           </div>
           <div className="inputs">
             <label className = "input-label">Diets:</label>
-            <textarea className = "textarea-input"
+            <textarea className = "recipeInput"
               onChange={handleChange}
               type="text"
               name="diet"
