@@ -1,7 +1,6 @@
 import "./Module.CreateRecipe.css";
 import { useState } from "react";
-import createRecipe from "./controllers/createRecipe.js";
-import { Link } from "react-router-dom";
+import createNewRecipe from "./createNewRecipe.js";
 export default function CreateRecipe() {
   const [recipe, setRecipe] = useState({
     title: "",
@@ -10,7 +9,7 @@ export default function CreateRecipe() {
     healthScore: 0,
     steps: "",
     diet: "",
-  });
+  }); 
 
   const handleChange = (evento) => {
     setRecipe({
@@ -20,7 +19,7 @@ export default function CreateRecipe() {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    createRecipe(recipe);
+    createNewRecipe(recipe);
     setRecipe({
       title: "",
       image: "",
@@ -32,9 +31,6 @@ export default function CreateRecipe() {
   };
   return (
     <>
-      <Link to="/home">
-        <button>Back Home</button>
-      </Link>
       <div className="container">
         <form className="allInputs" onSubmit={handleSubmit}>
           <div className="inputs">

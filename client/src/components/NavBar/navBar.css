@@ -1,0 +1,28 @@
+.navBar {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #472d25;
+  box-shadow: 0px 5px 5px 0px #000000b2;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn {
+  margin: 0 10px;
+  margin-right: 10px;
+}
+
+.searchInput {
+  padding: 6px 10px;
+  border: none;
+  background-color: #f5f5f5;
+  color: #333;
+  font-size: 16px;
+}
+
+.searchInput:focus {
+  outline: none;
+  box-shadow: 0px 0px 3px #f5f5f5;
+}

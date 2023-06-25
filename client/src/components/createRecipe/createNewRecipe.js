@@ -1,4 +1,4 @@
-const createRecipe = (recipe) => {
+const createNewRecipe = (recipe) => {
   const URL = "http://localhost:3001/recipes/";
 
   //trim remove spaces at end of any ,
@@ -28,4 +28,4 @@ const createRecipe = (recipe) => {
       console.error("Error creating recipe:", error);
     });
 };
-export default createRecipe;
+export default createNewRecipe;
