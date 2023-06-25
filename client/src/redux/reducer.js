@@ -13,6 +13,12 @@ const initialState = {
 };
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case GET_HOME_CARDS:
+      const {data} = action.payload;
+      return {
+        ...state,
+        recipes: data
+      }
     case PUT_FOOD_BY_NAME:
         return {
             ...state,
