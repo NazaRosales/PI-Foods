@@ -5,11 +5,10 @@ import LandingPage from "./components/landingPage/LandingPage";
 import Home from "./components/home/Home";
 import CreateRecipe from "./components/createRecipe/CreateRecipe.jsx";
 import Detail from "./components/detail/Detail";
-import NavBar from "./components/NavBar/navBar";
+import NavBar from "./components/NavBar/navBar.jsx";
 
 function App() {
   const { pathname } = useLocation();
-  console.log(pathname);
   return (
     <div>
       <div>{pathname !== "/" && <NavBar/>}</div>
