@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./Module.Detail.css";
 export default function Detail() {
@@ -17,9 +17,6 @@ export default function Detail() {
 
   return (
     <>
-      <Link to="/home">
-        <button> Go back</button>
-      </Link>
       <section className="detail">
         <div>
           <h2>{recipe?.title}</h2>

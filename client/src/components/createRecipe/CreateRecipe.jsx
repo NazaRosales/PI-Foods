@@ -75,7 +75,7 @@ export default function CreateRecipe() {
               value={recipe.healthScore}
               onChange={handleChange}
               type="number"
-              step={1}
+              step={0.1}
               min={0}
               max={100}
               placeholder="7.5"
