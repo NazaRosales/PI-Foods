@@ -4,24 +4,20 @@ import createNewRecipe from "./createNewRecipe.js";
 import { useSelector } from "react-redux";
 
 export default function CreateRecipe() {
-
-  const dietTypes = useSelector( state => state.diets )
-  console.log(dietTypes)
-
+  const dietTypes = useSelector((state) => state.diets);
   const [recipe, setRecipe] = useState({
     title: "",
     image: "",
     summary: "",
     healthScore: 0,
     steps: "",
-    diet: "",
+    diet: [],
   });
   const [errors, setErrors] = useState({
     title: "",
     summary: "",
     healthScore: "",
     steps: "",
-    diet:""
   });
 
   const validation = (recipe) => {
@@ -50,12 +46,22 @@ export default function CreateRecipe() {
     recipe.steps.length
       ? (errors = { ...errors, steps: "" })
       : (errors = { ...errors, steps: "There are errors in steps." });
-    const dietsRegex = /^[\w\s,]+$/;
-     dietsRegex.test(recipe.diet)
-     ? (errors = {...errors, diet: ""})
-     :  (errors = {...errors, diet: 'Diets have to be like: "Vegan, glutten free, etc..."' })
     return errors;
   };
+
+  const handleDiets = (event) => {
+    const checked = event.target.value;
+    let arrDiets = [...recipe.diet];
+    if (event.target.checked) {
+      arrDiets.push(checked);
+      console.log(recipe)
+    } else {
+      arrDiets = arrDiets.filter((diet) => diet !== checked);
+      console.log(recipe)
+    }
+    setRecipe({ ...recipe, diet: arrDiets });
+  };
+
   const handleChange = (evento) => {
     setRecipe({
       ...recipe,
@@ -71,7 +77,6 @@ export default function CreateRecipe() {
   const handleSubmit = (event) => {
     event.preventDefault();
     //all keys on errors have falsy value ("")
-    console.log(errors.diet)
     if (Object.values(errors).every((value) => !Boolean(value))) {
       createNewRecipe(recipe);
       setRecipe({
@@ -80,9 +85,9 @@ export default function CreateRecipe() {
         summary: "",
         healthScore: 0,
         steps: "",
-        diet: "",
+        diet: [],
       });
-      alert("Recipe created successfully")
+      alert("Recipe created successfully");
     }
   };
   return (
@@ -158,12 +163,22 @@ export default function CreateRecipe() {
           </div>
           <div className="inputs">
             <label className="input-label">Diets:</label>
-            
-            <div className="el div de las diets">
 
+            <div className="divDiets">
+              {dietTypes?.map((diet) => {
+                return (
+                  <div className="diet">
+                    <label> {diet} </label>
+                    <input
+                      onChange={handleDiets}
+                      type="checkbox"
+                      value={diet}
+                      name={diet}
+                    />
+                  </div>
+                );
+              })}
             </div>
-
-
           </div>
           <div className="btnContainer">
             <button className="btnCreate">Create</button>
