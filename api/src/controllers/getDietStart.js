@@ -2,6 +2,7 @@ const { Diets } = require("../db");
 const getDietStart = async (recipes) => {
   let arrayDiets = [];
   recipes.forEach((recipe) => {
+    console.log(recipe.diet)
     arrayDiets = [...arrayDiets, ...recipe.diet];
   });
   const result = [...new Set(arrayDiets)]; // new array deleting repeated

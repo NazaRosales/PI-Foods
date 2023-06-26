@@ -4,13 +4,13 @@ const axios = require("axios");
 
 const getHome = async () => {
   const dbRecipes = await Recipe.findAll();
+  let apiRecipes = [];
 
   try {
     const { data } = await axios.get(
       `${URL_API}complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=10`
     );
     const { results } = data;
-    let apiRecipes = [];
     if (results.length) {
       apiRecipes = results.map((element) => {
         return {

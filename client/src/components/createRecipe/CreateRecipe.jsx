@@ -1,7 +1,13 @@
 import "./Module.CreateRecipe.css";
 import { useState } from "react";
 import createNewRecipe from "./createNewRecipe.js";
+import { useSelector } from "react-redux";
+
 export default function CreateRecipe() {
+
+  const dietTypes = useSelector( state => state.diets )
+  console.log(dietTypes)
+
   const [recipe, setRecipe] = useState({
     title: "",
     image: "",
@@ -10,24 +16,74 @@ export default function CreateRecipe() {
     steps: "",
     diet: "",
   });
+  const [errors, setErrors] = useState({
+    title: "",
+    summary: "",
+    healthScore: "",
+    steps: "",
+    diet:""
+  });
 
+  const validation = (recipe) => {
+    let errors = {};
+
+    const titleRegex = /^[^0-9]{1,100}$/;
+    titleRegex.test(recipe.title)
+      ? (errors = { ...errors, title: "" })
+      : (errors = { ...errors, title: "There are errors in title." });
+
+    recipe.summary.length > 20
+      ? (errors = { ...errors, summary: "" })
+      : (errors = {
+          ...errors,
+          summary: "Summary must be at least 20 characters",
+        });
+
+    const isFloat = /^[0-9]+(\.[0-9]{1,1})?$|^10(\.[0]{1,1})?$/;
+    isFloat.test(recipe.healthScore)
+      ? (errors = { ...errors, healthScore: "" })
+      : (errors = {
+          ...errors,
+          healthScore: "Invalid value for health score.",
+        });
+
+    recipe.steps.length
+      ? (errors = { ...errors, steps: "" })
+      : (errors = { ...errors, steps: "There are errors in steps." });
+    const dietsRegex = /^[\w\s,]+$/;
+     dietsRegex.test(recipe.diet)
+     ? (errors = {...errors, diet: ""})
+     :  (errors = {...errors, diet: 'Diets have to be like: "Vegan, glutten free, etc..."' })
+    return errors;
+  };
   const handleChange = (evento) => {
     setRecipe({
       ...recipe,
       [evento.target.name]: evento.target.value,
     });
+    setErrors(
+      validation({
+        ...recipe,
+        [evento.target.name]: evento.target.value,
+      })
+    );
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    createNewRecipe(recipe);
-    setRecipe({
-      title: "",
-      image: "",
-      summary: "",
-      healthScore: 0,
-      steps: "",
-      diet: "",
-    });
+    //all keys on errors have falsy value ("")
+    console.log(errors.diet)
+    if (Object.values(errors).every((value) => !Boolean(value))) {
+      createNewRecipe(recipe);
+      setRecipe({
+        title: "",
+        image: "",
+        summary: "",
+        healthScore: 0,
+        steps: "",
+        diet: "",
+      });
+      alert("Recipe created successfully")
+    }
   };
   return (
     <>
@@ -43,6 +99,7 @@ export default function CreateRecipe() {
               value={recipe.title}
               placeholder="Chiles stuffed with huitlacoche..."
             />
+            {errors.title && <p> {errors.title} </p>}
           </div>
 
           <div className="inputs">
@@ -67,6 +124,7 @@ export default function CreateRecipe() {
               placeholder="
             Lightly blend the cream and cheese, serve in a pan and sprinkle with chopped cilantro. reserve"
             />
+            {errors.summary && <p> {errors.summary} </p>}
           </div>
 
           <div className="inputs">
@@ -82,6 +140,7 @@ export default function CreateRecipe() {
               max={100}
               placeholder="80.5"
             />
+            {errors.healthScore && <p> {errors.healthScore} </p>}
           </div>
 
           <div className="inputs">
@@ -95,17 +154,16 @@ export default function CreateRecipe() {
               placeholder="
             Lightly blend the cream and cheese, serve in a pan and sprinkle with chopped cilantro. reserve"
             />
+            {errors.steps && <p> {errors.steps} </p>}
           </div>
           <div className="inputs">
             <label className="input-label">Diets:</label>
-            <textarea
-              className="recipeInput"
-              onChange={handleChange}
-              type="text"
-              name="diet"
-              value={recipe.diet}
-              placeholder="Glutten free, vegan, etc..."
-            />
+            
+            <div className="el div de las diets">
+
+            </div>
+
+
           </div>
           <div className="btnContainer">
             <button className="btnCreate">Create</button>
