@@ -54,10 +54,8 @@ export default function CreateRecipe() {
     let arrDiets = [...recipe.diet];
     if (event.target.checked) {
       arrDiets.push(checked);
-      console.log(recipe)
     } else {
       arrDiets = arrDiets.filter((diet) => diet !== checked);
-      console.log(recipe)
     }
     setRecipe({ ...recipe, diet: arrDiets });
   };
@@ -104,7 +102,7 @@ export default function CreateRecipe() {
               value={recipe.title}
               placeholder="Chiles stuffed with huitlacoche..."
             />
-            {errors.title && <p> {errors.title} </p>}
+            {errors.title && <p className="errors"> {errors.title} </p>}
           </div>
 
           <div className="inputs">
@@ -129,7 +127,7 @@ export default function CreateRecipe() {
               placeholder="
             Lightly blend the cream and cheese, serve in a pan and sprinkle with chopped cilantro. reserve"
             />
-            {errors.summary && <p> {errors.summary} </p>}
+            {errors.summary && <p className="errors"> {errors.summary} </p>}
           </div>
 
           <div className="inputs">
@@ -145,7 +143,7 @@ export default function CreateRecipe() {
               max={100}
               placeholder="80.5"
             />
-            {errors.healthScore && <p> {errors.healthScore} </p>}
+            {errors.healthScore && <p className="errors"> {errors.healthScore} </p>}
           </div>
 
           <div className="inputs">
@@ -159,7 +157,7 @@ export default function CreateRecipe() {
               placeholder="
             Lightly blend the cream and cheese, serve in a pan and sprinkle with chopped cilantro. reserve"
             />
-            {errors.steps && <p> {errors.steps} </p>}
+            {errors.steps && <p className="errors"> {errors.steps} </p>}
           </div>
           <div className="inputs">
             <label className="input-label">Diets:</label>
