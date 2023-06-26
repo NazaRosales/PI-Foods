@@ -15,7 +15,6 @@ export default function Home() {
     };
     fetchRecipes();
   }, [dispatch, recipes]);
-  console.log(recipes)
   return (
     <div className="cards">
       {

@@ -12,8 +12,7 @@ export default function Detail() {
         setRecipe(data)
       });
   }, [URL]);
-  const dietString = recipe?.diet?.join(", ") + ".";
-
+  const formatter = new Intl.ListFormat('en',{ style: 'long', type: 'conjunction' })
 
   return (
     <>
@@ -29,7 +28,7 @@ export default function Detail() {
 
         <div>
           <p>{recipe?.summary}</p>
-          <p>{dietString}</p>
+          <p>{recipe.diet && formatter.format(recipe?.diet)}</p>
           <p>Health Score: {recipe?.healthScore}</p>
           <p>Preparation: {recipe?.steps}</p>
         </div>
