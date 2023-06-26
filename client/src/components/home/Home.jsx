@@ -4,34 +4,22 @@ import { useEffect } from "react";
 import { getHomeRecipes } from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 export default function Home() {
-  /* const [search, setSearch] = useState("");
- const handleSearch = (event) => {
-   setSearch(event.target.value);
-  };
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setSearch("");
-    const response = await sendRequestName(search)
-    if(response?.status === 500){
-      alert("RECIPE DO NOT EXIST")
-    } else{
-      console.log(response)
-      setRecipes(response); //by query
-    }
-  };
-  */
-
   const dispatch = useDispatch();
-  const recipes = useSelector( state => state.recipes )
-  
-  useEffect(() =>{  
-  if(!recipes?.length){
-     dispatch(getHomeRecipes())
-  }
-  },[recipes])
+  const recipes = useSelector((state) => state.recipes);
+
+  useEffect(() => {
+    const fetchRecipes = async () => {
+      if (!recipes?.length) {
+        await dispatch(getHomeRecipes());
+      }
+    };
+    fetchRecipes();
+  }, [dispatch, recipes]);
+  console.log(recipes)
   return (
     <div className="cards">
-      {/* {recipes?.length > 0 &&
+      {
+        recipes.length > 0 &&
         recipes?.map((recipe) => {
           return (
             <RecipeCard
@@ -39,10 +27,12 @@ export default function Home() {
               id={recipe?.id}
               image={recipe?.image}
               title={recipe?.title}
-              diet={recipe?.diets}
+              summary={recipe?.summary}
+              diet={recipe?.diet}
             />
           );
-        })} */}
+        })
+      } 
     </div>
   );
 }

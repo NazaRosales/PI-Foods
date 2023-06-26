@@ -1,4 +1,4 @@
-const { Diet } = require("../db");
+const { Diets } = require("../db");
 const getDietStart = async (recipes) => {
   let arrayDiets = [];
   recipes.forEach((recipe) => {
@@ -6,7 +6,7 @@ const getDietStart = async (recipes) => {
   });
   const result = [...new Set(arrayDiets)]; // new array deleting repeated
   result.forEach(async (element) => {
-    await Diet.create({ name: element });
+    await Diets.create({ name: element });
   });
   return result;
 };
