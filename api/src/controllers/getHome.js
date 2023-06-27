@@ -8,7 +8,7 @@ const getHome = async () => {
 
   try {
     const { data } = await axios.get(
-      `${URL_API}complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=10`
+      `${URL_API}complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`
     );
     const { results } = data;
     if (results.length) {

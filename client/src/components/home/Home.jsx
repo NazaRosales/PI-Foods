@@ -1,8 +1,8 @@
 import "./module.Home.css";
-import RecipeCard from "../Cards/RecipeCard.jsx";
 import { useEffect } from "react";
 import { getHomeRecipes } from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
+import Paginated from "../Paginated/Paginated";
 export default function Home() {
   const dispatch = useDispatch();
   const recipes = useSelector((state) => state.recipes);
@@ -15,23 +15,10 @@ export default function Home() {
     };
     fetchRecipes();
   }, [dispatch, recipes]);
+
   return (
-    <div className="cards">
-      {
-        recipes.length > 0 &&
-        recipes?.map((recipe) => {
-          return (
-            <RecipeCard
-              key={recipe?.id}
-              id={recipe?.id}
-              image={recipe?.image}
-              title={recipe?.title}
-              summary={recipe?.summary}
-              diet={recipe?.diet}
-            />
-          );
-        })
-      } 
-    </div>
+    <>
+      <Paginated />
+    </>
   );
 }
