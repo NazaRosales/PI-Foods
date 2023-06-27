@@ -35,7 +35,7 @@ export default function Paginated() {
 
       <div className="pages">
         {Array.from(
-          { length: Math.floor(recipes.length / numRecipes) },
+          { length: Math.ceil(recipes.length / numRecipes) },
           (_, index) => (
             <button key={index} onClick={() => handlePageChange(index + 1)}>
               {index + 1}

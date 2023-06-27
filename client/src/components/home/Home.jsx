@@ -14,7 +14,7 @@ export default function Home() {
       }
     };
     fetchRecipes();
-  }, [dispatch, recipes]);
+  }, [recipes]);
 
   return (
     <>

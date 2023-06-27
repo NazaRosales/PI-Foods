@@ -1,10 +1,12 @@
 import "./Module.CreateRecipe.css";
 import { useState } from "react";
 import createNewRecipe from "./createNewRecipe.js";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getHomeRecipes } from "../../redux/actions";
 
 export default function CreateRecipe() {
   const dietTypes = useSelector((state) => state.diets);
+  const dispatch = useDispatch();
   const [recipe, setRecipe] = useState({
     title: "",
     image: "",
@@ -72,9 +74,10 @@ export default function CreateRecipe() {
       })
     );
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    //all keys on errors have falsy value ("")
+    // All keys on errors have falsy value ("")
     if (Object.values(errors).every((value) => !Boolean(value))) {
       createNewRecipe(recipe);
       setRecipe({
@@ -85,20 +88,25 @@ export default function CreateRecipe() {
         steps: "",
         diet: [],
       });
-      alert("Recipe created successfully");
+      dispatch(getHomeRecipes())
+      .then(alert("Recipe created successfully"));
     }
   };
+
   return (
     <>
       <div className="container">
         <form className="allInputs" onSubmit={handleSubmit}>
           <div className="inputs">
-            <label className="input-label">Recipe Name:</label>
+            <label htmlFor="title" className="input-label">
+              Recipe Name:
+            </label>
             <input
               className="recipeInput"
               onChange={handleChange}
               type="text"
               name="title"
+              id="title"
               value={recipe.title}
               placeholder="Chiles stuffed with huitlacoche..."
             />
@@ -106,35 +114,44 @@ export default function CreateRecipe() {
           </div>
 
           <div className="inputs">
-            <label className="input-label">URL image:</label>
+            <label htmlFor="image" className="input-label">
+              URL image:
+            </label>
             <input
               className="recipeInput"
               onChange={handleChange}
               type="url"
               name="image"
+              id="image"
               value={recipe.image}
               placeholder="https://imageurl.com.ar/"
             />
           </div>
+
           <div className="inputs">
-            <label className="input-label">Summary</label>
+            <label htmlFor="summary" className="input-label">
+              Summary:
+            </label>
             <input
               className="recipeInput"
               onChange={handleChange}
               type="text"
               name="summary"
+              id="summary"
               value={recipe.summary}
-              placeholder="
-            Lightly blend the cream and cheese, serve in a pan and sprinkle with chopped cilantro. reserve"
+              placeholder="Lightly blend the cream and cheese, serve in a pan and sprinkle with chopped cilantro. reserve"
             />
             {errors.summary && <p className="errors"> {errors.summary} </p>}
           </div>
 
           <div className="inputs">
-            <label className="input-label">Health Score:</label>
+            <label htmlFor="healthScore" className="input-label">
+              Health Score:
+            </label>
             <input
               className="recipeInput"
               name="healthScore"
+              id="healthScore"
               value={recipe.healthScore}
               onChange={handleChange}
               type="number"
@@ -143,41 +160,45 @@ export default function CreateRecipe() {
               max={100}
               placeholder="80.5"
             />
-            {errors.healthScore && <p className="errors"> {errors.healthScore} </p>}
+            {errors.healthScore && (
+              <p className="errors"> {errors.healthScore} </p>
+            )}
           </div>
 
           <div className="inputs">
-            <label className="input-label">Steps:</label>
+            <label htmlFor="steps" className="input-label">
+              Steps:
+            </label>
             <input
               className="recipeInput"
               name="steps"
+              id="steps"
               value={recipe.steps}
               onChange={handleChange}
               type="text"
-              placeholder="
-            Lightly blend the cream and cheese, serve in a pan and sprinkle with chopped cilantro. reserve"
+              placeholder="Lightly blend the cream and cheese, serve in a pan and sprinkle with chopped cilantro. reserve"
             />
             {errors.steps && <p className="errors"> {errors.steps} </p>}
           </div>
+
           <div className="inputs">
             <label className="input-label">Diets:</label>
-
             <div className="divDiets">
-              {dietTypes?.map((diet) => {
-                return (
-                  <div className="diet">
-                    <label> {diet} </label>
-                    <input
-                      onChange={handleDiets}
-                      type="checkbox"
-                      value={diet}
-                      name={diet}
-                    />
-                  </div>
-                );
-              })}
+              {dietTypes?.map((diet, index) => (
+                <div className="diet" key={index}>
+                  <label htmlFor={index + "diet"}> {diet} </label>
+                  <input
+                    id={index + "diet"}
+                    onChange={handleDiets}
+                    type="checkbox"
+                    value={diet}
+                    name={diet}
+                  />
+                </div>
+              ))}
             </div>
           </div>
+
           <div className="btnContainer">
             <button className="btnCreate">Create</button>
           </div>
