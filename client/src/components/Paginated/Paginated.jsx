@@ -19,7 +19,7 @@ export default function Paginated() {
     setCurrentPage(pageNumber);
   };
   return (
-    <>
+    <div className="paginated-container">
       <div className="cards">
         {recipes?.length > 0 &&
           currentRecipes?.map((recipe) => {
@@ -46,6 +46,6 @@ export default function Paginated() {
           )
         )}
       </div>
-    </>
+    </div>
   );
 }

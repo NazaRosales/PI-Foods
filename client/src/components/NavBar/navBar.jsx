@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "./navBar.css";
-import { recipesByName } from "../../redux/actions";
+import { recipesByName, clearFilteredRecipes } from "../../redux/actions";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
@@ -19,7 +19,7 @@ export default function NavBar() {
   }
   
   const handleClick = () => {
-    dispatch(recipesByName(""))
+    dispatch(clearFilteredRecipes());
   }
   return (
     <div className="navBar">

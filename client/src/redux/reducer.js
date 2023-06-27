@@ -1,7 +1,8 @@
 import {
   GET_HOME_CARDS,
   CREATE_RECIPE,
-  RECIPE_BY_NAME
+  RECIPE_BY_NAME,
+  CLEAR_FILTERED_RECIPES
 } from "./actions";
 const initialState = {
   recipes: [],
@@ -29,6 +30,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         filteredRecipes: action.payload,
+      };
+      case CLEAR_FILTERED_RECIPES:
+      return {
+        ...state,
+        filteredRecipes: [],
       };
     default:
       return { ...state };
