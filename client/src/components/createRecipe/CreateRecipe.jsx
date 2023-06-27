@@ -1,8 +1,8 @@
 import "./Module.CreateRecipe.css";
+import axios from "axios";
 import { useState } from "react";
-import createNewRecipe from "./createNewRecipe.js";
 import { useDispatch, useSelector } from "react-redux";
-import { getHomeRecipes } from "../../redux/actions";
+import { createRecipe } from "../../redux/actions";
 
 export default function CreateRecipe() {
   const dietTypes = useSelector((state) => state.diets);
@@ -75,11 +75,12 @@ export default function CreateRecipe() {
     );
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // All keys on errors have falsy value ("")
-    if (Object.values(errors).every((value) => !Boolean(value))) {
-      createNewRecipe(recipe);
+    try {
+      const result = await axios.post("http://localhost:3001/recipes", recipe);
+      dispatch(createRecipe(result.data));
+      alert("Recipe created successfully!✅");
       setRecipe({
         title: "",
         image: "",
@@ -88,8 +89,10 @@ export default function CreateRecipe() {
         steps: "",
         diet: [],
       });
-      dispatch(getHomeRecipes())
-      .then(alert("Recipe created successfully"));
+    } catch (error) {
+      alert(
+        "The recipe could not be created due to an error in the information ❌"
+      );
     }
   };
 

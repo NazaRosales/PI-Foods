@@ -6,7 +6,6 @@ import Paginated from "../Paginated/Paginated";
 export default function Home() {
   const dispatch = useDispatch();
   const recipes = useSelector((state) => state.recipes);
-
   useEffect(() => {
     const fetchRecipes = async () => {
       if (!recipes?.length) {

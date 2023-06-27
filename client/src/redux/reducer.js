@@ -21,6 +21,12 @@ const rootReducer = (state = initialState, action) => {
         diets: diets,
       };
 
+      case CREATE_RECIPE:
+        return {
+          ...state,
+          recipes: [action.payload, ...state.recipes ]
+        }
+
     case PUT_FOOD_BY_NAME:
       return {
         ...state,

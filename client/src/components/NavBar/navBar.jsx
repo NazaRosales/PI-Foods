@@ -12,7 +12,6 @@ export default function NavBar() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const res = await sendRequestName(searchValue);
-    console.log(res)
   }
   return (
     <div className="navBar">

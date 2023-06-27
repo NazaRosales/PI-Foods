@@ -9,9 +9,13 @@ export const getHomeRecipes = () => {
   return async function (dispatch) {
     try {
       const { data } = await axios.get("http://localhost:3001/home");
-      dispatch({type: GET_HOME_CARDS, payload: data})
+      dispatch({ type: GET_HOME_CARDS, payload: data });
     } catch (error) {
       alert(`Recipes not foud. Error: ${error.message}`);
     }
   };
+};
+
+export const createRecipe = (recipe) => {
+  return { type: CREATE_RECIPE, payload: recipe };
 };

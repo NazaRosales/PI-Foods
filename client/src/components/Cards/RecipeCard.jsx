@@ -1,7 +1,7 @@
 import "./Module.RecipeCard.css";
 import { Link } from "react-router-dom";
 export default function RecipeCard(props) {
-  const { image, title, diet } = props;
+  const { id, image, title, diet } = props;
   const formatter = new Intl.ListFormat('en',{ style: 'long', type: 'conjunction' })
   return (
     <Link to = {`/detail/${id}`} className="link">
