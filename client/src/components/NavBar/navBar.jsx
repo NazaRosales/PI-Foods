@@ -17,6 +17,10 @@ export default function NavBar() {
     dispatch(recipesByName(searchValue));
     setSearchValue("")
   }
+  
+  const handleClick = () => {
+    dispatch(recipesByName(""))
+  }
   return (
     <div className="navBar">
       <Link to="/">
@@ -41,6 +45,9 @@ export default function NavBar() {
         />
         <button className="btn">Search Recipe</button>
       </form>
+
+        <button onClick={handleClick}className="btn">All</button>
+
     </div>
   );
 }

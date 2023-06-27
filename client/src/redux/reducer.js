@@ -6,7 +6,7 @@ import {
 const initialState = {
   recipes: [],
   diets: [],
-  foodDetail: {},
+  filteredRecipes: [],
   currentPage: 0,
 };
 const rootReducer = (state = initialState, action) => {
@@ -28,7 +28,7 @@ const rootReducer = (state = initialState, action) => {
     case RECIPE_BY_NAME:
       return {
         ...state,
-        recipes: action.payload,
+        filteredRecipes: action.payload,
       };
     default:
       return { ...state };

@@ -13,7 +13,7 @@ const getHome = async () => {
     const { results } = data;
     if (results.length) {
       apiRecipes = results.map((element) => {
-        return {
+        const recipe = {
           id: element.id,
           title: element.title,
           healthScore: element.healthScore,
@@ -21,11 +21,13 @@ const getHome = async () => {
           image: element.image,
           diet: element.diets ? element.diets : "steps not found",
         };
+        if(element.vegetarian) recipe.diet.push("vegetarian")
+        return recipe;
       });
     }
   } catch (error) {
-    console.log({error: error.message});
-    return dbRecipes; 
+    console.log({ error: error.message });
+    return dbRecipes;
   }
   return [...dbRecipes, ...apiRecipes];
 };

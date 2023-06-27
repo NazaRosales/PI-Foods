@@ -1,9 +1,8 @@
 import axios from "axios";
 export const GET_HOME_CARDS = "GET_HOME_CARDS";
-export const GET_FOOD_ID = "GET_FOOD_ID";
 export const RECIPE_BY_NAME = "RECIPE_BY_NAME";
 export const CREATE_RECIPE = "CREATE_RECIPE";
-export const CURRENT_PAGE = "CURRENT_PAGE";
+export const GET_HOME_FITERED = "GET_HOME_FITERED";
 
 export const getHomeRecipes = () => {
   return async function (dispatch) {
@@ -15,6 +14,10 @@ export const getHomeRecipes = () => {
     }
   };
 };
+
+export const getHomeFiltered = (filteredRecipes) => {
+  return { type: GET_HOME_FITERED, payload: filteredRecipes}
+}
 
 export const createRecipe = (recipe) => {
   return { type: CREATE_RECIPE, payload: recipe };
