@@ -10,7 +10,7 @@ export default function Paginated() {
 
   const indexOfLastRecipe = currentPage * numRecipes; //start with  1 * 9
   const indexOfFirstRecipe = indexOfLastRecipe - numRecipes; // start with  9 - 9 = [0]
-  const currentRecipes = recipes.slice(indexOfFirstRecipe, indexOfLastRecipe); // [ 0 ... 8]
+  const currentRecipes = recipes?.slice(indexOfFirstRecipe, indexOfLastRecipe); // [ 0 ... 8]
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -18,7 +18,7 @@ export default function Paginated() {
   return (
     <>
       <div className="cards">
-        {recipes.length > 0 &&
+        {recipes?.length > 0 &&
           currentRecipes?.map((recipe) => {
             return (
               <RecipeCard
@@ -35,7 +35,7 @@ export default function Paginated() {
 
       <div className="pages">
         {Array.from(
-          { length: Math.ceil(recipes.length / numRecipes) },
+          { length: Math.ceil(recipes?.length / numRecipes) },
           (_, index) => (
             <button key={index} onClick={() => handlePageChange(index + 1)}>
               {index + 1}

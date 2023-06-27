@@ -1,9 +1,7 @@
 import {
   GET_HOME_CARDS,
-  GET_FOOD_ID,
-  PUT_FOOD_BY_NAME,
   CREATE_RECIPE,
-  CURRENT_PAGE,
+  RECIPE_BY_NAME
 } from "./actions";
 const initialState = {
   recipes: [],
@@ -27,10 +25,10 @@ const rootReducer = (state = initialState, action) => {
           recipes: [action.payload, ...state.recipes ]
         }
 
-    case PUT_FOOD_BY_NAME:
+    case RECIPE_BY_NAME:
       return {
         ...state,
-        foods: action.payload,
+        recipes: action.payload,
       };
     default:
       return { ...state };

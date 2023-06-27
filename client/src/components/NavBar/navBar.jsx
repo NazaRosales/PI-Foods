@@ -1,17 +1,21 @@
 import { Link } from "react-router-dom";
 import "./navBar.css";
-import sendRequestName from "./sendRequestName";
+import { recipesByName } from "../../redux/actions";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+
 export default function NavBar() {
 
   const [searchValue, setSearchValue] = useState("");
+  const dispatch = useDispatch();
 
   const handleChange = (event) =>{
     setSearchValue(event.target.value)
   }
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    const res = await sendRequestName(searchValue);
+    dispatch(recipesByName(searchValue));
+    setSearchValue("")
   }
   return (
     <div className="navBar">

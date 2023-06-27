@@ -7,13 +7,13 @@ export default function Home() {
   const dispatch = useDispatch();
   const recipes = useSelector((state) => state.recipes);
   useEffect(() => {
-    const fetchRecipes = async () => {
+    const fetchRecipes = () => {
       if (!recipes?.length) {
-        await dispatch(getHomeRecipes());
+        dispatch(getHomeRecipes());
       }
     };
     fetchRecipes();
-  }, [recipes]);
+  }, [dispatch, recipes]);
 
   return (
     <>
