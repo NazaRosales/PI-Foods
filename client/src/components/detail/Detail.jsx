@@ -28,6 +28,7 @@ export default function Detail() {
         </div>
 
         <div>
+          <p>ID: {recipe?.id}</p>
           <p>{recipe?.summary}</p>
           <p>{recipe.diet && formatter.format(recipe?.diet)}</p>
           <p>Health Score: {recipe?.healthScore}</p>
