@@ -3,7 +3,8 @@ export const GET_HOME_CARDS = "GET_HOME_CARDS";
 export const RECIPE_BY_NAME = "RECIPE_BY_NAME";
 export const CREATE_RECIPE = "CREATE_RECIPE";
 export const GET_HOME_FITERED = "GET_HOME_FITERED";
-export const CLEAR_FILTERED_RECIPES = "CLEAR_FILTERED_RECIPES"
+export const CLEAR_FILTERED_RECIPES = "CLEAR_FILTERED_RECIPES";
+export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 
 export const getHomeRecipes = () => {
   return async function (dispatch) {
@@ -26,7 +27,9 @@ export const clearFilteredRecipes = () => {
 export const createRecipe = (recipe) => {
   return { type: CREATE_RECIPE, payload: recipe };
 };
-
+export const setCurrentPage = (pageNumber) => {
+  return { type: SET_CURRENT_PAGE, payload: pageNumber };
+};
 export const recipesByName = (name) => {
   return async function (dispatch) {
     try {

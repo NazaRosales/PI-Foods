@@ -1,22 +1,24 @@
-import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import RecipeCard from "../Cards/RecipeCard.jsx";
+import { setCurrentPage } from "../../redux/actions";
 import './paginated.css'
 
 export default function Paginated() {
   const recipes = useSelector((state) => state.recipes);
   const filteredRecipes = useSelector((state) => state.filteredRecipes);
+  const currentPage = useSelector((state) => state.currentPage);
 
   const numRecipes = 9; //recipes per page
-  const [currentPage, setCurrentPage] = useState(1);
   const showRecipes = filteredRecipes.length > 0 ? filteredRecipes : recipes;
 
-  const indexOfLastRecipe = currentPage * numRecipes; //start with  1 * 9
-  const indexOfFirstRecipe = indexOfLastRecipe - numRecipes; // start with  9 - 9 = [0]
-  const currentRecipes = showRecipes?.slice(indexOfFirstRecipe, indexOfLastRecipe); // [ 0 ... 8]
+  const indexOfLastRecipe = currentPage * numRecipes;
+  const indexOfFirstRecipe = indexOfLastRecipe - numRecipes;
+  const currentRecipes = showRecipes?.slice(indexOfFirstRecipe, indexOfLastRecipe);
+
+  const dispatch = useDispatch();
 
   const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
+    dispatch(setCurrentPage(pageNumber));
   };
   return (
     <div className="paginated-container">

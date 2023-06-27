@@ -8,7 +8,7 @@ export default function RecipeCard(props) {
       <div className="card">
         <h1 className="cardTitle">{title}</h1>
         <img className="cardImage" src={image} alt={`${title}`} />
-        <p className="cardDescription">{diet && formatter.format(diet)}</p>
+        <p className="cardDescription">Diet: {diet && formatter.format(diet)}.</p>
       </div>
     </Link>
   );
