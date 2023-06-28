@@ -4,6 +4,7 @@ import {
   RECIPE_BY_NAME,
   CLEAR_FILTERED_RECIPES,
   SET_CURRENT_PAGE,
+  GET_HOME_FILTERED
 } from "./actions";
 const initialState = {
   recipes: [],
@@ -37,6 +38,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         filteredRecipes: action.payload,
       };
+      case GET_HOME_FILTERED:
+        return {
+          ...state,
+          filteredRecipes: action.payload
+        }
     case CLEAR_FILTERED_RECIPES:
       return {
         ...state,

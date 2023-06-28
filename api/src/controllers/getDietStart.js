@@ -5,7 +5,6 @@ const getDietStart = async (recipes) => {
     arrayDiets = [...arrayDiets, ...recipe.diet];
   });
   const result = [...new Set(arrayDiets)]; // new array deleting repeated
-  console.log(result)
   result.forEach(async (element) => {
     await Diets.create({ name: element });
   });
