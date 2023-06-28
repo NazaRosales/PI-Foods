@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import RecipeCard from "../Cards/RecipeCard.jsx";
 import { setCurrentPage } from "../../redux/actions";
-import './paginated.css'
+import "./paginated.css";
 
 export default function Paginated() {
   const recipes = useSelector((state) => state.recipes);
@@ -13,7 +13,10 @@ export default function Paginated() {
 
   const indexOfLastRecipe = currentPage * numRecipes;
   const indexOfFirstRecipe = indexOfLastRecipe - numRecipes;
-  const currentRecipes = showRecipes?.slice(indexOfFirstRecipe, indexOfLastRecipe);
+  const currentRecipes = showRecipes?.slice(
+    indexOfFirstRecipe,
+    indexOfLastRecipe
+  );
 
   const dispatch = useDispatch();
 
@@ -39,6 +42,8 @@ export default function Paginated() {
       </div>
 
       <div className="pages">
+        {/* new array based on length of recipes array */}
+        {/*one button foreach index */}
         {Array.from(
           { length: Math.ceil(showRecipes?.length / numRecipes) },
           (_, index) => (

@@ -7,6 +7,7 @@ import {
 } from "../../redux/actions";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import Filters from "../filters/filters.jsx";
 
 export default function NavBar() {
   const [searchValue, setSearchValue] = useState("");
@@ -50,10 +51,11 @@ export default function NavBar() {
         />
         <button className="btn">Search Recipe</button>
       </form>
-
+        
       <button onClick={handleClick} className="btn">
         All
       </button>
+      <Filters/>
     </div>
   );
 }
