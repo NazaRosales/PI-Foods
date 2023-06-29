@@ -22,10 +22,9 @@ export const getHomeFiltered = (filters) => {
     const { recipes } = getState();
     let filteredRecipes = [...recipes];
 
-    // Verificar el filtro de input
-    
-     if (filters.input) {
-      filteredRecipes = recipesByName(filters.input);
+    if (filters.input) {
+      dispatch(recipesByName(filters.input));
+      //arreglar la busqueda por nombre
     }
 
     if (filters.diet) {
@@ -34,23 +33,24 @@ export const getHomeFiltered = (filters) => {
       );
     }
 
-    if(filters.alphOrder !== "By Default"){
-      filteredRecipes = filteredRecipes.sort( (a,b) => {
+    if (filters.alphOrder !== "By Default") {
+      filteredRecipes = filteredRecipes.sort((a, b) => {
         const titleA = a.title.toUpperCase();
         const titleB = b.title.toUpperCase();
-        return filters.alphOrder === "A-Z" ? titleA.localeCompare(titleB) : titleB.localeCompare(titleA);
-      })
+        if (filters.alphOrder === "A-Z") return titleA.localeCompare(titleB);
+        if (filters.alphOrder === "Z-A") return titleB.localeCompare(titleA);
+      });
     }
 
-    if(filters.scoreOrder === "100 - 0"){
-      function compare(recipeA, recipeB){
+    if (filters.scoreOrder === "100 - 0") {
+      function compare(recipeA, recipeB) {
         return recipeB.healthScore - recipeA.healthScore;
-      } 
+      }
       filteredRecipes.sort(compare);
-    } else if(filters.scoreOrder === "0 - 100"){
-      function compare(recipeA, recipeB){
+    } else if (filters.scoreOrder === "0 - 100") {
+      function compare(recipeA, recipeB) {
         return recipeA.healthScore - recipeB.healthScore;
-      } 
+      }
       filteredRecipes.sort(compare);
     }
     dispatch({ type: GET_HOME_FILTERED, payload: filteredRecipes });
@@ -70,13 +70,12 @@ export const setCurrentPage = (pageNumber) => {
 };
 
 export const recipesByName = (name) => {
-  return async () => {
+  return async (dispatch) => {
     try {
       const { data } = await axios.get(
         `http://localhost:3001/recipes/name?name=${name}`
       );
-      console.log(data)
-      return data;
+      dispatch({ type: GET_HOME_FILTERED, payload: data });
     } catch (error) {
       alert(`Recipe ${name} does not exist. 🔍︎`);
     }

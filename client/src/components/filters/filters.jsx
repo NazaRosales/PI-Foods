@@ -5,7 +5,7 @@ import {
   setCurrentPage,
 } from "../../redux/actions";
 import { useState } from "react";
-
+import "./filters.css"
 export default function Filters() {
   const diets = useSelector((state) => state.diets);
   const dispatch = useDispatch();
