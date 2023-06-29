@@ -2,12 +2,11 @@ import "./Module.CreateRecipe.css";
 import axios from "axios";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createRecipe, setCurrentPage } from "../../redux/actions";
+import { createRecipe } from "../../redux/actions";
 
 export default function CreateRecipe() {
   const dietTypes = useSelector((state) => state.diets);
   const dispatch = useDispatch();
-  dispatch(setCurrentPage(1));
   const [recipe, setRecipe] = useState({
     title: "",
     image: "",

@@ -1,7 +1,6 @@
 import axios from "axios";
 
 export const GET_HOME_CARDS = "GET_HOME_CARDS";
-export const RECIPE_BY_NAME = "RECIPE_BY_NAME";
 export const CREATE_RECIPE = "CREATE_RECIPE";
 export const GET_HOME_FILTERED = "GET_HOME_FILTERED";
 export const CLEAR_FILTERED_RECIPES = "CLEAR_FILTERED_RECIPES";
@@ -26,9 +25,7 @@ export const getHomeFiltered = (filters) => {
     // Verificar el filtro de input
     
      if (filters.input) {
-      filteredRecipes = filteredRecipes.filter((recipe) =>
-      recipe.title.toLowerCase().includes(filters.input.toLowerCase())
-      );
+      filteredRecipes = recipesByName(filters.input);
     }
 
     if (filters.diet) {
@@ -73,12 +70,13 @@ export const setCurrentPage = (pageNumber) => {
 };
 
 export const recipesByName = (name) => {
-  return async (dispatch) => {
+  return async () => {
     try {
       const { data } = await axios.get(
         `http://localhost:3001/recipes/name?name=${name}`
       );
-      dispatch({ type: RECIPE_BY_NAME, payload: data });
+      console.log(data)
+      return data;
     } catch (error) {
       alert(`Recipe ${name} does not exist. 🔍︎`);
     }

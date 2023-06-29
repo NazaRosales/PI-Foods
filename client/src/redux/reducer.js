@@ -1,7 +1,6 @@
 import {
   GET_HOME_CARDS,
   CREATE_RECIPE,
-  RECIPE_BY_NAME,
   CLEAR_FILTERED_RECIPES,
   SET_CURRENT_PAGE,
   GET_HOME_FILTERED
@@ -31,12 +30,6 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         currentPage: action.payload,
-      };
-
-    case RECIPE_BY_NAME:
-      return {
-        ...state,
-        filteredRecipes: action.payload,
       };
       case GET_HOME_FILTERED:
         return {

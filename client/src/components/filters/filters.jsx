@@ -1,5 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
-import { getHomeFiltered, clearFilteredRecipes } from "../../redux/actions";
+import {
+  getHomeFiltered,
+  clearFilteredRecipes,
+  setCurrentPage,
+} from "../../redux/actions";
 import { useState } from "react";
 
 export default function Filters() {
@@ -23,6 +27,7 @@ export default function Filters() {
       scoreOrder: "",
     });
 
+    dispatch(setCurrentPage(1));
     dispatch(clearFilteredRecipes());
   };
   const handleChanges = (event) => {
@@ -34,6 +39,7 @@ export default function Filters() {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
+    dispatch(setCurrentPage(1));
     dispatch(getHomeFiltered(filters));
   };
 
