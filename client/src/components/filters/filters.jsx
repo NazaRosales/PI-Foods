@@ -39,8 +39,8 @@ export default function Filters() {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(setCurrentPage(1));
     dispatch(getHomeFiltered(filters));
+    dispatch(setCurrentPage(1));
   };
 
   return (

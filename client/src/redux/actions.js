@@ -39,6 +39,7 @@ export const getHomeFiltered = (filters) => {
         const titleB = b.title.toUpperCase();
         if (filters.alphOrder === "A-Z") return titleA.localeCompare(titleB);
         if (filters.alphOrder === "Z-A") return titleB.localeCompare(titleA);
+        return 0;
       });
     }
 
