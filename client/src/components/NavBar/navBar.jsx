@@ -51,11 +51,11 @@ export default function NavBar() {
         />
         <button className="btn">Search Recipe</button>
       </form>
-        
+
       <button onClick={handleClick} className="btn">
         All
       </button>
-      <Filters/>
+      <Filters />
     </div>
   );
 }

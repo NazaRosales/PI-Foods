@@ -3,17 +3,17 @@
     height: 220px;
     margin: 10px;
     padding: 5px;
-    background-color: #ccccccce;
+    background-color: #cccccca8;
     color: #333;
-    border: 1px solid #555;
+    border: 1px solid #ccccccbd;
     border-radius: 5px;
     padding: 5px;
     text-align: center;
 }
 .card:hover{
     cursor: pointer;
-    background-color: #ccc;
-    border: 1px solid #ccc;
+    background-color: #ccccccec;
+    border: 1px solid #ccccccbd;
 }
 .link{
     text-decoration: none;

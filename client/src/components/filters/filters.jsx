@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { GET_HOME_FILTERED } from "../../redux/actions";
 import isUUID from "./isUUID";
-
+import "./filters.css"
 export default function Filters() {
   const diets = useSelector((state) => state.diets);
   const recipes = useSelector((state) => state.recipes);
@@ -49,8 +49,8 @@ export default function Filters() {
   dispatch({ type: GET_HOME_FILTERED, payload: auxRecipes });
 
   return (
-    <div>
-      <select name="diet" onChange={handleSelectChange} value={filters.diet}>
+    <div className="filtersContainer">
+      <select name="diet" onChange={handleSelectChange} value={filters.diet} className="selectFilter">
         <option>All Diets</option>
         {diets.map((diet) => (
           <option key={diet}>{diet}</option>
@@ -58,6 +58,7 @@ export default function Filters() {
       </select>
 
       <select
+       className="selectFilter"
         name="origin"
         onChange={handleSelectChange}
         value={filters.origin}
@@ -67,13 +68,13 @@ export default function Filters() {
         <option>From DB</option>
       </select>
 
-      <select name="order" onChange={handleSelectChange} value={filters.order}>
+      <select className="selectFilter" name="order" onChange={handleSelectChange} value={filters.order}>
         <option>By Default</option>
         <option>A-Z</option>
         <option>Z-A</option>
       </select>
 
-      <select
+      <select className="selectFilter"
         name="health"
         onChange={handleSelectChange}
         value={filters.health}
