@@ -32,6 +32,17 @@ export const getHomeFiltered = (filters) => {
         recipe.diet.includes(filters.diet)
       );
     }
+    if (filters.origin !== "All Origins") {
+      if (filters.origin === "From API") {
+        filteredRecipes = filteredRecipes.filter(
+          (recipe) => typeof recipe.id === "number"
+        );
+      } else {
+        filteredRecipes = filteredRecipes.filter(
+          (recipe) => typeof recipe.id !== "number"
+        );
+      }
+    }
 
     if (filters.alphOrder !== "By Default") {
       filteredRecipes = filteredRecipes.sort((a, b) => {
