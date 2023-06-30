@@ -5,7 +5,7 @@ import {
   setCurrentPage,
 } from "../../redux/actions";
 import { useState } from "react";
-import "./filters.css"
+import "./filters.css";
 export default function Filters() {
   const diets = useSelector((state) => state.diets);
   const dispatch = useDispatch();
@@ -42,7 +42,6 @@ export default function Filters() {
     dispatch(getHomeFiltered(filters));
     dispatch(setCurrentPage(1));
   };
-
   return (
     <>
       <form>

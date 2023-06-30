@@ -6,6 +6,9 @@ export const GET_HOME_FILTERED = "GET_HOME_FILTERED";
 export const CLEAR_FILTERED_RECIPES = "CLEAR_FILTERED_RECIPES";
 export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 
+export const FILTER_BY_DIET = "FILTER_BY_DIET";
+export const ORDER_BY_HEALTH = "ORDER_BY_HEALTH";
+
 export const getHomeRecipes = () => {
   return async (dispatch) => {
     try {
@@ -27,10 +30,8 @@ export const getHomeFiltered = (filters) => {
       //arreglar la busqueda por nombre
     }
 
-    if (filters.diet) {
-      filteredRecipes = filteredRecipes.filter((recipe) =>
-        recipe.diet.includes(filters.diet)
-      );
+    if (filters.diet !== "All Diets") {
+      dispatch({ type: FILTER_BY_DIET, payload: filters.diet });
     }
     if (filters.origin !== "All Origins") {
       if (filters.origin === "From API") {
@@ -54,16 +55,8 @@ export const getHomeFiltered = (filters) => {
       });
     }
 
-    if (filters.scoreOrder === "100 - 0") {
-      function compare(recipeA, recipeB) {
-        return recipeB.healthScore - recipeA.healthScore;
-      }
-      filteredRecipes.sort(compare);
-    } else if (filters.scoreOrder === "0 - 100") {
-      function compare(recipeA, recipeB) {
-        return recipeA.healthScore - recipeB.healthScore;
-      }
-      filteredRecipes.sort(compare);
+    if (filters.scoreOrder !== "Health score") {
+      dispatch({ type: ORDER_BY_HEALTH, payload: filters.scoreOrder });
     }
     dispatch({ type: GET_HOME_FILTERED, payload: filteredRecipes });
   };

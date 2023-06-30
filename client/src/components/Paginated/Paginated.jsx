@@ -4,16 +4,14 @@ import { setCurrentPage } from "../../redux/actions";
 import "./paginated.css";
 
 export default function Paginated() {
-  const recipes = useSelector((state) => state.recipes);
   const filteredRecipes = useSelector((state) => state.filteredRecipes);
   const currentPage = useSelector((state) => state.currentPage);
 
-  const numRecipes = 9; //recipes per page
-  const showRecipes = filteredRecipes.length > 0 ? filteredRecipes : recipes;
+  const numRecipes = 9; // recetas por página
 
   const indexOfLastRecipe = currentPage * numRecipes;
   const indexOfFirstRecipe = indexOfLastRecipe - numRecipes;
-  const currentRecipes = showRecipes?.slice(
+  const currentRecipes = filteredRecipes.slice(
     indexOfFirstRecipe,
     indexOfLastRecipe
   );
@@ -23,11 +21,12 @@ export default function Paginated() {
   const handlePageChange = (pageNumber) => {
     dispatch(setCurrentPage(pageNumber));
   };
+
   return (
     <div className="paginated-container">
       <div className="cards">
-        {recipes?.length > 0 &&
-          currentRecipes?.map((recipe) => {
+        {filteredRecipes.length > 0 &&
+          currentRecipes.map((recipe) => {
             return (
               <RecipeCard
                 key={recipe?.id}
@@ -42,10 +41,8 @@ export default function Paginated() {
       </div>
 
       <div className="pages">
-        {/* new array based on length of recipes array */}
-        {/*one button foreach index */}
         {Array.from(
-          { length: Math.ceil(showRecipes?.length / numRecipes) },
+          { length: Math.ceil(filteredRecipes.length / numRecipes) },
           (_, index) => (
             <button key={index} onClick={() => handlePageChange(index + 1)}>
               {index + 1}
