@@ -6,6 +6,8 @@ import {
   GET_HOME_FILTERED,
   FILTER_BY_DIET,
   ORDER_BY_HEALTH,
+  FILTER_BY_ORIGIN,
+  ORDER_BY_TITLE
 } from "./actions";
 const initialState = {
   recipes: [],
@@ -46,10 +48,25 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         filteredRecipes:
-          action.payload === "100 - 0"
+          action.payload === "0 - 100"
             ? [...state.recipes.sort((a, b) => a.healthScore - b.healthScore)]
-            : [...state.recipes.sort((a, b) => b.healthScore - a.healthScore)],
+            : [...state.recipes.sort((a, b) => b.healthScore - a.healthScore)]
       };
+      case FILTER_BY_ORIGIN:
+        return{
+          ...state,
+          filteredRecipes:
+          action.payload === "From DB" 
+          ? [...state.recipes.filter( recipe => typeof(recipe.id) !== "number")]
+          : [...state.recipes.filter( recipe => typeof(recipe.id) === "number")]
+        }
+      case ORDER_BY_TITLE:
+        return {
+          ...state, 
+          filteredRecipes: (action.payload === 'A-Z')
+          ? [...state.filteredRecipes.sort((a, b) => a.title.localeCompare(b.title))]
+          : [...state.filteredRecipes.sort((a, b) => b.title.localeCompare(a.title))]
+        }
     case GET_HOME_FILTERED:
       return {
         ...state,

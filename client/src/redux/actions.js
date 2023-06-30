@@ -8,6 +8,8 @@ export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 
 export const FILTER_BY_DIET = "FILTER_BY_DIET";
 export const ORDER_BY_HEALTH = "ORDER_BY_HEALTH";
+export const FILTER_BY_ORIGIN = "FILTER_BY_ORIGIN";
+export const ORDER_BY_TITLE = "ORDER_BY_TITLE";
 
 export const getHomeRecipes = () => {
   return async (dispatch) => {
@@ -33,32 +35,18 @@ export const getHomeFiltered = (filters) => {
     if (filters.diet !== "All Diets") {
       dispatch({ type: FILTER_BY_DIET, payload: filters.diet });
     }
+    
     if (filters.origin !== "All Origins") {
-      if (filters.origin === "From API") {
-        filteredRecipes = filteredRecipes.filter(
-          (recipe) => typeof recipe.id === "number"
-        );
-      } else {
-        filteredRecipes = filteredRecipes.filter(
-          (recipe) => typeof recipe.id !== "number"
-        );
-      }
+     dispatch({type: FILTER_BY_ORIGIN, payload: filters.diet})
     }
 
     if (filters.alphOrder !== "By Default") {
-      filteredRecipes = filteredRecipes.sort((a, b) => {
-        const titleA = a.title.toUpperCase();
-        const titleB = b.title.toUpperCase();
-        if (filters.alphOrder === "A-Z") return titleA.localeCompare(titleB);
-        if (filters.alphOrder === "Z-A") return titleB.localeCompare(titleA);
-        return 0;
-      });
+     dispatch({type: ORDER_BY_TITLE, payload: filters.alphOrder})
     }
 
     if (filters.scoreOrder !== "Health score") {
       dispatch({ type: ORDER_BY_HEALTH, payload: filters.scoreOrder });
     }
-    dispatch({ type: GET_HOME_FILTERED, payload: filteredRecipes });
   };
 };
 

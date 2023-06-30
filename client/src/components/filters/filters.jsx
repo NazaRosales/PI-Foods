@@ -29,6 +29,7 @@ export default function Filters() {
 
     dispatch(setCurrentPage(1));
     dispatch(clearFilteredRecipes());
+    dispatch(getHomeFiltered({}));
   };
   const handleChanges = (event) => {
     const { value, name } = event.target;
