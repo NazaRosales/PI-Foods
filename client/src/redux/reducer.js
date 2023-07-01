@@ -7,14 +7,17 @@ import {
   FILTER_BY_DIET,
   ORDER_BY_HEALTH,
   FILTER_BY_ORIGIN,
-  ORDER_BY_TITLE
+  ORDER_BY_TITLE,
+  FILTER_BY_NAME,
 } from "./actions";
+
 const initialState = {
   recipes: [],
   diets: [],
   filteredRecipes: [],
   currentPage: 1,
 };
+
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_HOME_CARDS:
@@ -30,54 +33,92 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         recipes: [action.payload, ...state.recipes],
+        filteredRecipes: [action.payload, ...state.filteredRecipes],
       };
+
     case SET_CURRENT_PAGE:
       return {
         ...state,
         currentPage: action.payload,
       };
+    case FILTER_BY_NAME:
+      return {  
+        ...state,
+        filteredRecipes: action.payload
+      };
     case FILTER_BY_DIET:
+      const filteredByDiet = state.recipes.filter((recipe) =>
+        recipe.diet.includes(action.payload)
+      );
       return {
         ...state,
-        filteredRecipes: state.recipes.filter((recipe) =>
-          recipe.diet.includes(action.payload)
-        ),
+        filteredRecipes: filteredByDiet,
       };
+
     case ORDER_BY_HEALTH:
-      console.log(action.payload);
+      const orderedByHealth =
+        action.payload === "0 - 100"
+          ? [
+              ...state.filteredRecipes.sort(
+                (a, b) => a.healthScore - b.healthScore
+              ),
+            ]
+          : [
+              ...state.filteredRecipes.sort(
+                (a, b) => b.healthScore - a.healthScore
+              ),
+            ];
       return {
         ...state,
-        filteredRecipes:
-          action.payload === "0 - 100"
-            ? [...state.recipes.sort((a, b) => a.healthScore - b.healthScore)]
-            : [...state.recipes.sort((a, b) => b.healthScore - a.healthScore)]
+        filteredRecipes: orderedByHealth,
       };
-      case FILTER_BY_ORIGIN:
-        return{
-          ...state,
-          filteredRecipes:
-          action.payload === "From DB" 
-          ? [...state.recipes.filter( recipe => typeof(recipe.id) !== "number")]
-          : [...state.recipes.filter( recipe => typeof(recipe.id) === "number")]
-        }
-      case ORDER_BY_TITLE:
-        return {
-          ...state, 
-          filteredRecipes: (action.payload === 'A-Z')
-          ? [...state.filteredRecipes.sort((a, b) => a.title.localeCompare(b.title))]
-          : [...state.filteredRecipes.sort((a, b) => b.title.localeCompare(a.title))]
-        }
+
+    case FILTER_BY_ORIGIN:
+      const filteredByOrigin =
+        action.payload === "From DB"
+          ? [...state.recipes.filter((recipe) => typeof recipe.id !== "number")]
+          : [
+              ...state.recipes.filter(
+                (recipe) => typeof recipe.id === "number"
+              ),
+            ];
+      return {
+        ...state,
+        filteredRecipes: filteredByOrigin,
+      };
+
+    case ORDER_BY_TITLE:
+      const orderedByTitle =
+        action.payload === "A-Z"
+          ? [
+              ...state.filteredRecipes.sort((a, b) =>
+                a.title.localeCompare(b.title)
+              ),
+            ]
+          : [
+              ...state.filteredRecipes.sort((a, b) =>
+                b.title.localeCompare(a.title)
+              ),
+            ];
+      return {
+        ...state,
+        filteredRecipes: orderedByTitle,
+      };
+
     case GET_HOME_FILTERED:
       return {
         ...state,
       };
+
     case CLEAR_FILTERED_RECIPES:
       return {
         ...state,
         filteredRecipes: state.recipes,
       };
+
     default:
       return { ...state };
   }
 };
+
 export default rootReducer;
