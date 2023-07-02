@@ -5,7 +5,6 @@ export const CREATE_RECIPE = "CREATE_RECIPE";
 export const GET_HOME_FILTERED = "GET_HOME_FILTERED";
 export const CLEAR_FILTERED_RECIPES = "CLEAR_FILTERED_RECIPES";
 export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
-
 export const FILTER_BY_DIET = "FILTER_BY_DIET";
 export const ORDER_BY_HEALTH = "ORDER_BY_HEALTH";
 export const FILTER_BY_ORIGIN = "FILTER_BY_ORIGIN";
@@ -33,7 +32,9 @@ export const getHomeFiltered = (filters) => {
         dispatch({ type: FILTER_BY_NAME, payload: data });
       }
     } catch (error) {
-      alert(`Recipe ${filters.input} does not exist. 🔍︎`);
+      alert(
+        `Recipe ${filters.input} does not exist. 🔍︎ \n Error: ${error.message}`
+      );
     }
     if (filters.diet && filters.diet !== "All Diets") {
       dispatch({ type: FILTER_BY_DIET, payload: filters.diet });

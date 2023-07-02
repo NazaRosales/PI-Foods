@@ -1,4 +1,4 @@
-import "./Module.RecipeCard.css";
+import "./RecipeCard.css";
 import { Link } from "react-router-dom";
 export default function RecipeCard(props) {
   const { id, image, title, diet } = props;
