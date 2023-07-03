@@ -47,7 +47,7 @@ const rootReducer = (state = initialState, action) => {
         filteredRecipes: action.payload
       };
     case FILTER_BY_DIET:
-      const filteredByDiet = state.recipes.filter((recipe) =>
+      const filteredByDiet = [...state.filteredRecipes].filter((recipe) =>
         recipe.diet.includes(action.payload)
       );
       return {
@@ -58,16 +58,8 @@ const rootReducer = (state = initialState, action) => {
     case ORDER_BY_HEALTH:
       const orderedByHealth =
         action.payload === "0 - 100"
-          ? [
-              ...state.filteredRecipes.sort(
-                (a, b) => a.healthScore - b.healthScore
-              ),
-            ]
-          : [
-              ...state.filteredRecipes.sort(
-                (a, b) => b.healthScore - a.healthScore
-              ),
-            ];
+          ? [...state.filteredRecipes.sort((a, b) => a.healthScore - b.healthScore)]
+          : [...state.filteredRecipes.sort((a, b) => b.healthScore - a.healthScore)];
       return {
         ...state,
         filteredRecipes: orderedByHealth,
@@ -76,12 +68,8 @@ const rootReducer = (state = initialState, action) => {
     case FILTER_BY_ORIGIN:
       const filteredByOrigin =
         action.payload === "From DB"
-          ? [...state.recipes.filter((recipe) => typeof recipe.id !== "number")]
-          : [
-              ...state.recipes.filter(
-                (recipe) => typeof recipe.id === "number"
-              ),
-            ];
+          ? [...state.filteredRecipes].filter((recipe) => typeof recipe.id !== "number")
+          : [...state.filteredRecipes].filter((recipe) => typeof recipe.id === "number");
       return {
         ...state,
         filteredRecipes: filteredByOrigin,
@@ -90,16 +78,8 @@ const rootReducer = (state = initialState, action) => {
     case ORDER_BY_TITLE:
       const orderedByTitle =
         action.payload === "A-Z"
-          ? [
-              ...state.filteredRecipes.sort((a, b) =>
-                a.title.localeCompare(b.title)
-              ),
-            ]
-          : [
-              ...state.filteredRecipes.sort((a, b) =>
-                b.title.localeCompare(a.title)
-              ),
-            ];
+          ? [...state.filteredRecipes].sort((a, b) => a.title.localeCompare(b.title))
+          : [...state.filteredRecipes].sort((a, b) => b.title.localeCompare(a.title));
       return {
         ...state,
         filteredRecipes: orderedByTitle,
