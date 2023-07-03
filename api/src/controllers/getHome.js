@@ -26,8 +26,10 @@ const getHome = async () => {
       });
     }
   } catch (error) {
-    console.log({ error: error.message });
-    return dbRecipes;
+    if(dbRecipes.length){
+      return dbRecipes;
+    }
+    throw Error("No recipes available");
   }
   return [...dbRecipes, ...apiRecipes];
 };

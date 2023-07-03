@@ -3,10 +3,8 @@ const { Recipe } = require("../db.js");
 const getRecipeById = async (id) => {
 const {URL_API, API_KEY} = process.env;
   if(typeof(id) === "number"){
-    const {data} = await axios(
-      `${URL_API}${id}/information?apiKey=${API_KEY}`
-    ) 
-    console.log(data.diets)
+    const {data} = await axios(`${URL_API}${id}/information?apiKey=${API_KEY}`) 
+    
     return({
       id: data.id,
       title: data.title,

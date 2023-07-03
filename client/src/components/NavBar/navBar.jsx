@@ -4,7 +4,6 @@ import Filters from "../filters/filters";
 
 export default function NavBar() {
   const { pathname } = useLocation();
-  console.log(pathname);
   return (
     <div className="navBar">
       <Link to="/">
@@ -18,7 +17,7 @@ export default function NavBar() {
         <button className="btn">Create Recipe</button>
       </Link>
 
-      <Filters />
+      { pathname === "/home" && <Filters />}
     </div>
   );
 }
