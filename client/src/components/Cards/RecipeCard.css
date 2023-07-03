@@ -1,37 +1,35 @@
-.card{
-    width: 200px;
-    height: 220px;
-    margin: 10px;
-    padding: 5px;
-    background-color: #cccccca8;
-    color: #333;
-    border: 1px solid #ccccccbd;
-    border-radius: 5px;
-    padding: 5px;
-    text-align: center;
+.card {
+  width: 200px;
+  height: 220px;
+  margin: 10px;
+  padding: 5px;
+  color: #333;
+  background-color: #cccccc8e;
+  border: 1px solid #ccccccbd;
+  border-radius: 5px;
+  text-align: center;
 }
-.card:hover{
-    cursor: pointer;
-    background-color: #ccccccec;
-    border: 1px solid #ccccccbd;
+.card:hover {
+  cursor: pointer;
+  background-color: #ffffffb4;
 }
-.link{
-    text-decoration: none;
+.link {
+  text-decoration: none;
 }
-.cardTitle{
-    font-size: 10px;
-    font-weight: 800;
+.cardTitle {
+  font-size: 10px;
+  font-weight: 800;
 }
-.cardDescription{
-    font-size: 8px;
-    font-weight: 600;
+.cardDescription {
+  font-size: 8px;
+  font-weight: 600;
 }
-.cardImage{
-    width: 150px;
-    border-radius: 5px;
-    border: 1px solid #555;
-    opacity: 0.85;
+.cardImage {
+  width: 180px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  opacity: 0.85;
 }
 .card:hover .cardImage {
-    opacity: 1;
-  }
+  opacity: 1;
+}

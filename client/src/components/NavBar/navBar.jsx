@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./navBar.css";
 import Filters from "../filters/filters";
 
 export default function NavBar() {
-
+  const { pathname } = useLocation();
+  console.log(pathname);
   return (
     <div className="navBar">
       <Link to="/">

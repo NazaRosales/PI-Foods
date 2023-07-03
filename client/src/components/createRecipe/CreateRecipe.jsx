@@ -97,7 +97,7 @@ export default function CreateRecipe() {
   };
 
   return (
-    <>
+    <div className="section">
       <div className="container">
         <form className="allInputs" onSubmit={handleSubmit}>
           <div className="inputs">
@@ -207,6 +207,6 @@ export default function CreateRecipe() {
           </div>
         </form>
       </div>
-    </>
+    </div>
   );
 }

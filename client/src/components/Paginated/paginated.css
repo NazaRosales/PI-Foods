@@ -1,13 +1,16 @@
 .paginated-container {
+  padding-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  min-height: 100vh;
-  padding-bottom: 20px; /* Espacio adicional en la parte inferior */
 }
-
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+}
 .pages {
-  padding: 5px;
-  margin-top: auto; /* Empuja el contenedor de las páginas hacia abajo */
+  padding: 10px;
+  margin-top: auto; 
 }

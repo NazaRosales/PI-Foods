@@ -1,4 +1,3 @@
-import "./Home.css";
 import { useEffect } from "react";
 import { getHomeRecipes } from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
