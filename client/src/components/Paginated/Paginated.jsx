@@ -25,19 +25,20 @@ export default function Paginated() {
   return (
     <div className="paginated-container">
       <div className="cards">
-        {filteredRecipes.length > 0 &&
-          currentRecipes.map((recipe) => {
-            return (
-              <RecipeCard
-                key={recipe?.id}
-                id={recipe?.id}
-                image={recipe?.image}
-                title={recipe?.title}
-                summary={recipe?.summary}
-                diet={recipe?.diet}
-              />
-            );
-          })}
+        {filteredRecipes.length > 0 ? (
+          currentRecipes.map((recipe) => (
+            <RecipeCard
+              key={recipe?.id}
+              id={recipe?.id}
+              image={recipe?.image}
+              title={recipe?.title}
+              summary={recipe?.summary}
+              diet={recipe?.diet}
+            />
+          ))
+        ) : (
+          <h1 className="loading">Loading...</h1>
+        )}
       </div>
 
       <div className="pages">

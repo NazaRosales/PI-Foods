@@ -12,5 +12,24 @@
 }
 .pages {
   padding: 10px;
-  margin-top: auto; 
+  position: fixed;
+  bottom: 0;
+}
+.loading {
+  padding: 8px;
+  border-radius: 5px;
+  background-color: #eeeeee;
+  animation: loadingAnimation 1.2s infinite ease-in-out;
+}
+
+@keyframes loadingAnimation {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
 }
