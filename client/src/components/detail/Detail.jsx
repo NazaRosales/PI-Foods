@@ -19,26 +19,32 @@ export default function Detail() {
 
   return (
     <div className="detailContainer">
-      <section className="detail">
-        <div>
-          <h2>{recipe?.title}</h2>
-          <img
-            src={recipe?.image}
-            alt={recipe?.title}
-            className="imageFood"
-          ></img>
-        </div>
-        <div>
-          <p>ID: {id}</p>
-          <p>{recipe?.summary}</p>
-          <p>Diet: {recipe.diet && formatter.format(recipe?.diet)}</p>
-          <p>Health Score: {recipe?.healthScore}</p>
-        </div>
+      {recipe.title ? (
+        <section className="detail">
+          <div>
+            <h2>{recipe?.title}</h2>
+            <img
+              src={recipe?.image}
+              alt={recipe?.title}
+              className="imageFood"
+            ></img>
+          </div>
+          <div>
+            <p>ID: {id}</p>
+            <p>{recipe?.summary}</p>
+            <p>Diet: {recipe.diet && formatter.format(recipe?.diet)}</p>
+            <p>Health Score: {recipe?.healthScore}</p>
+          </div>
 
-        <div>
-          <p>Preparation: {recipe?.steps}</p>
+          <div>
+            <p>Preparation: {recipe?.steps}</p>
+          </div>
+        </section>
+      ) : (
+        <div className="detail">
+          <h2>The recipe was not found, check that the id is correct.</h2>
         </div>
-      </section>
+      )}
     </div>
   );
 }
