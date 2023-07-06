@@ -15,6 +15,10 @@
   position: fixed;
   bottom: 0;
 }
+.pageSelected{
+  background-color: #333;
+  color: #ffffff;
+}
 .loading {
   padding: 8px;
   border-radius: 5px;

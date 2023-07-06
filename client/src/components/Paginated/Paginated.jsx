@@ -45,7 +45,11 @@ export default function Paginated() {
         {Array.from(
           { length: Math.ceil(filteredRecipes.length / numRecipes) },
           (_, index) => (
-            <button key={index} onClick={() => handlePageChange(index + 1)}>
+            <button
+              className={index + 1 === currentPage && "pageSelected"}
+              key={index}
+              onClick={() => handlePageChange(index + 1)}
+            >
               {index + 1}
             </button>
           )
