@@ -2,13 +2,13 @@ const { Diets } = require("../db");
 const { Recipe } = require("../db");
 const postRecipe = async (
   title,
+  image,
   summary,
   healthScore,
   steps,
-  score,
-  image,
   diet
 ) => {
+  console.log(healthScore)
   if (!summary || !title) throw Error("Summary or title is not defined!");
   const result = await Recipe.create({
     title,
@@ -16,8 +16,7 @@ const postRecipe = async (
     summary,
     healthScore,
     steps,
-    score,
-    diet,
+    diet
   });
 
   // usamos el bucle forEach para iterar sobre diet.para cada elemento se usa

@@ -7,7 +7,6 @@ const postRecipe = require("../controllers/postRecipe.js");
 
 
 recipesRouter.get("/name", async (req, res) => {
-  //falta corregir este metodo
   const { name } = req.query;
   try {
     const result = await getRecipeByName(req, res, name);
@@ -32,16 +31,15 @@ recipesRouter.get("/:idRecipe", async (req, res) => {
 
 recipesRouter.post("/", async (req, res) => {
   //CREANDO RECETA EN BD
-  const { title, summary, healthScore, steps, score, image, diet } = req.body;
-
+  const { title, summary, healthScore, steps, image, diet } = req.body;
+  console.log(healthScore)
   try {
     const result = await postRecipe(
       title,
+      image,
       summary,
       healthScore,
       steps,
-      score,
-      image,
       diet
     );
     res.status(201).json(result);

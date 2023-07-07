@@ -28,9 +28,11 @@ module.exports = (sequelize) => {
       },
       steps: {
         type: DataTypes.TEXT,
+        allowNull: false
       },
       diet: {
         type: DataTypes.ARRAY(DataTypes.STRING), //ARRAY OF STRINGS
+        allowNull: false
       },
     },
     { timestamps: false }

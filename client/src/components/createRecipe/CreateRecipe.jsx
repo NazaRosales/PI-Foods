@@ -20,6 +20,7 @@ export default function CreateRecipe() {
     summary: "",
     healthScore: "",
     steps: "",
+    diet: [],
   });
 
   const validation = (recipe) => {
@@ -45,32 +46,45 @@ export default function CreateRecipe() {
           healthScore: "Invalid value for health score.",
         });
 
-    recipe.steps.length
+    recipe.steps.length > 10
       ? (errors = { ...errors, steps: "" })
       : (errors = { ...errors, steps: "There are errors in steps." });
+
+    recipe.diet.length
+      ? (errors = { ...errors, diet: "" })
+      : (errors = { ...errors, diet: "Select at last 1 recipe " });
     return errors;
   };
-
-  const handleDiets = (event) => {
-    const checked = event.target.value;
+  const handleChecks = (e) => {
+    const checked = e.target.value;
     let arrDiets = [...recipe.diet];
-    if (event.target.checked) {
-      arrDiets.push(checked);
-    } else {
-      arrDiets = arrDiets.filter((diet) => diet !== checked);
-    }
-    setRecipe({ ...recipe, diet: arrDiets });
-  };
 
-  const handleChange = (evento) => {
+    e.target.checked
+      ? arrDiets.push(checked)
+      : (arrDiets = arrDiets.filter((diet) => diet !== checked));
+
     setRecipe({
       ...recipe,
-      [evento.target.name]: evento.target.value,
+      diet: arrDiets,
     });
     setErrors(
       validation({
         ...recipe,
-        [evento.target.name]: evento.target.value,
+        [e.target.name]: e.target.value,
+      })
+    );
+    console.log(recipe)
+  };
+  const handleChange = (e) => {
+    setRecipe({
+      ...recipe,
+      [e.target.name]: e.target.value,
+    });
+
+    setErrors(
+      validation({
+        ...recipe,
+        [e.target.name]: e.target.value,
       })
     );
   };
@@ -78,6 +92,8 @@ export default function CreateRecipe() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      if (Object.values(errors).some((error) => error)) throw new Error();
+
       const result = await axios.post("http://localhost:3001/recipes", recipe);
       dispatch(createRecipe(result.data));
       alert("Recipe created successfully!✅");
@@ -192,14 +208,15 @@ export default function CreateRecipe() {
                   <label htmlFor={index + "diet"}> {diet} </label>
                   <input
                     id={index + "diet"}
-                    onChange={handleDiets}
+                    onChange={handleChecks}
                     type="checkbox"
                     value={diet}
-                    name={diet}
+                    name="diet"
                   />
                 </div>
               ))}
             </div>
+            {errors.diet && <p className="errors">{errors.diet}</p>}
           </div>
 
           <div className="btnContainer">
