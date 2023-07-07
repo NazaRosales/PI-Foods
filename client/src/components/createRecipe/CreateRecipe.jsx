@@ -24,6 +24,7 @@ export default function CreateRecipe() {
   });
 
   const validation = (recipe) => {
+    console.log(recipe);
     let errors = {};
 
     const titleRegex = /^[^0-9]{1,100}$/;
@@ -50,30 +51,30 @@ export default function CreateRecipe() {
       ? (errors = { ...errors, steps: "" })
       : (errors = { ...errors, steps: "There are errors in steps." });
 
-    recipe.diet.length
+    recipe.diet.length >= 1
       ? (errors = { ...errors, diet: "" })
       : (errors = { ...errors, diet: "Select at last 1 recipe " });
     return errors;
   };
   const handleChecks = (e) => {
-    const checked = e.target.value;
-    let arrDiets = [...recipe.diet];
+    const checked = e.target.value; //tipo de dieta
+    let arrDiet = [...recipe.diet];
 
-    e.target.checked
-      ? arrDiets.push(checked)
-      : (arrDiets = arrDiets.filter((diet) => diet !== checked));
+    arrDiet.includes(checked)
+      ? (arrDiet = arrDiet.filter((diet) => diet !== checked))
+      : arrDiet.push(checked);
 
     setRecipe({
       ...recipe,
-      diet: arrDiets,
+      [e.target.name]: arrDiet,
     });
+
     setErrors(
       validation({
         ...recipe,
-        [e.target.name]: e.target.value,
+        [e.target.name]: arrDiet,
       })
     );
-    console.log(recipe)
   };
   const handleChange = (e) => {
     setRecipe({
@@ -207,11 +208,11 @@ export default function CreateRecipe() {
                 <div className="diet" key={index}>
                   <label htmlFor={index + "diet"}> {diet} </label>
                   <input
+                    name="diet"
                     id={index + "diet"}
                     onChange={handleChecks}
                     type="checkbox"
                     value={diet}
-                    name="diet"
                   />
                 </div>
               ))}
