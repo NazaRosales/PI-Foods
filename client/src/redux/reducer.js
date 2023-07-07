@@ -42,9 +42,13 @@ const rootReducer = (state = initialState, action) => {
         currentPage: action.payload,
       };
     case FILTER_BY_NAME:
+      const recipesMatched = [...state.filteredRecipes].filter( recipe => 
+        recipe.title.toUpperCase().includes(action.payload.toUpperCase())
+      )
+      console.log(recipesMatched)
       return {  
         ...state,
-        filteredRecipes: action.payload
+        filteredRecipes: recipesMatched
       };
     case FILTER_BY_DIET:
       const filteredByDiet = [...state.filteredRecipes].filter((recipe) =>

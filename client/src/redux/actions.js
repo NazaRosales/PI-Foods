@@ -24,17 +24,9 @@ export const getHomeRecipes = () => {
 
 export const getHomeFiltered = (filters) => {
   return async (dispatch) => {
-    try {
-      if (filters.input) {
-        const { data } = await axios.get(
-          `http://localhost:3001/recipes/name?name=${filters.input}`
-        );
-        dispatch({ type: FILTER_BY_NAME, payload: data });
-      }
-    } catch (error) {
-      alert(
-        `Recipe ${filters.input} does not exist. 🔍︎ \n Error: ${error.message}`
-      );
+    if (filters.input) {
+      dispatch({ type: FILTER_BY_NAME, payload: filters.input });
+      // `Recipe ${filters.input} does not exist. 🔍︎ \n Error: ${error.message}`
     }
     if (filters.diet && filters.diet !== "All Diets") {
       dispatch({ type: FILTER_BY_DIET, payload: filters.diet });
