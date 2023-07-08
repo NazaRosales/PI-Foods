@@ -94,8 +94,8 @@ export default function CreateRecipe() {
     event.preventDefault();
     try {
       if (Object.values(errors).some((error) => error)) throw new Error();
-
       const result = await axios.post("http://localhost:3001/recipes", recipe);
+      
       dispatch(createRecipe(result.data));
       alert("Recipe created successfully!✅");
       setRecipe({

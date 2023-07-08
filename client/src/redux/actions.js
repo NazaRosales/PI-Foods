@@ -22,27 +22,23 @@ export const getHomeRecipes = () => {
   };
 };
 
-export const getHomeFiltered = (filters) => {
-  return async (dispatch) => {
-    if (filters.input) {
-      dispatch({ type: FILTER_BY_NAME, payload: filters.input });
-      // `Recipe ${filters.input} does not exist. 🔍︎ \n Error: ${error.message}`
-    }
-    if (filters.diet && filters.diet !== "All Diets") {
-      dispatch({ type: FILTER_BY_DIET, payload: filters.diet });
-    }
+export const filterByName = (input) => {
+  return { type: FILTER_BY_NAME, payload: input };
+};
 
-    if (filters.origin && filters.origin !== "All Origins") {
-      dispatch({ type: FILTER_BY_ORIGIN, payload: filters.origin });
-    }
+export const filterByDiet = (diet) => {
+  return { type: FILTER_BY_DIET, payload: diet };
+};
 
-    if (filters.alphOrder && filters.alphOrder !== "By Default") {
-      dispatch({ type: ORDER_BY_TITLE, payload: filters.alphOrder });
-    }
-    if (filters.scoreOrder && filters.scoreOrder !== "Health score") {
-      dispatch({ type: ORDER_BY_HEALTH, payload: filters.scoreOrder });
-    }
-  };
+export const filterByOrigin = (origin) => {
+  return { type: FILTER_BY_ORIGIN, payload: origin };
+};
+
+export const sortAlphOrder = (order) => {
+  return { type: ORDER_BY_TITLE, payload: order };
+};
+export const sortScoreOrder = (order) => {
+  return { type: ORDER_BY_HEALTH, payload: order };
 };
 
 export const clearFilteredRecipes = () => {

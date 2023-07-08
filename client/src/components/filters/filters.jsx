@@ -1,112 +1,125 @@
 import { useSelector, useDispatch } from "react-redux";
 import {
-  getHomeFiltered,
   clearFilteredRecipes,
+  filterByName,
+  filterByOrigin,
+  filterByDiet,
+  sortAlphOrder,
+  sortScoreOrder,
   setCurrentPage,
 } from "../../redux/actions";
-import { useState } from "react";
 import "./filters.css";
+import { useState } from "react";
+
 export default function Filters() {
   const diets = useSelector((state) => state.diets);
   const dispatch = useDispatch();
-  const [filters, setFilter] = useState({
+
+  const [options, setOptions] = useState({
     input: "",
-    diet: "",
-    origin: "",
-    alphOrder: "",
-    scoreOrder: "",
+    diet: "All Diets",
+    origin: "All Origins",
+    alphOrder: "By Default",
+    scoreOrder: "Health score",
   });
 
-  const handleAll = (event) => {
-    event.preventDefault();
-    setFilter({
+  const handleAll = () => {
+    setOptions({
       input: "",
-      diet: "",
-      origin: "",
-      alphOrder: "",
-      scoreOrder: "",
+      diet: "All Diets",
+      origin: "All Origins",
+      alphOrder: "By Default",
+      scoreOrder: "Health score",
     });
-
-    dispatch(setCurrentPage(1));
     dispatch(clearFilteredRecipes());
-    dispatch(getHomeFiltered({}));
-  };
-  const handleChanges = (event) => {
-    const { value, name } = event.target;
-    setFilter({
-      ...filters,
-      [name]: value,
-    });
-  };
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    dispatch(getHomeFiltered(filters));
     dispatch(setCurrentPage(1));
   };
+
+  const handleChange = (e) => {
+    setOptions({
+      ...options,
+      [e.target.name]: [e.target.value],
+    });
+    dispatcher(e);
+  };
+
+  const dispatcher = (e) => {
+    const { value, name } = e.target;
+    if (name === "input" && value) dispatch(filterByName(value));
+
+    if (name === "diet" && value !== "All Diets") dispatch(filterByDiet(value));
+
+    if (name === "origin" && value !== "All Origins")
+      dispatch(filterByOrigin(value));
+
+    if (name === "alphOrder" && value !== "By Default")
+      dispatch(sortAlphOrder(value));
+
+    if (name === "scoreOrder" && value !== "Health score")
+      dispatch(sortScoreOrder(value));
+
+    dispatch(setCurrentPage(1));
+  };
+
   return (
-    <>
-      <form>
-        <input
-          value={filters.input}
-          name="input"
-          onChange={handleChanges}
-          onSubmit={handleSubmit}
-          className="searchInput"
-          type="text"
-          placeholder="Search: Corn Avocado Salsa"
-        />
-        <button onClick={handleSubmit} className="btn">
-          Search Recipe
-        </button>
+    <div>
+      <input
+        name="input"
+        value={options.input}
+        className="searchInput"
+        type="text"
+        onChange={handleChange}
+        placeholder="Search: Corn Avocado Salsa"
+      />
 
-        <select
-          name="diet"
-          value={filters.diet}
-          onChange={handleChanges}
-          className="selectFilter"
-        >
-          <option>All Diets</option>
-          {diets.map((diet) => (
-            <option key={diet}>{diet}</option>
-          ))}
-        </select>
+      <select
+        name="diet"
+        value={options.diet}
+        className="selectFilter"
+        onChange={handleChange}
+      >
+        <option>All Diets</option>
+        {diets.map((diet, index) => (
+          <option key={diet + index}>{diet}</option>
+        ))}
+      </select>
 
-        <select
-          name="origin"
-          value={filters.origin}
-          onChange={handleChanges}
-          className="selectFilter"
-        >
-          <option>All Origins</option>
-          <option>From API</option>
-          <option>From DB</option>
-        </select>
+      <select
+        name="origin"
+        value={options.origin}
+        className="selectFilter"
+        onChange={handleChange}
+      >
+        <option>All Origins</option>
+        <option>From API</option>
+        <option>From DB</option>
+      </select>
 
-        <select
-          name="alphOrder"
-          value={filters.alphOrder}
-          onChange={handleChanges}
-          className="selectFilter"
-        >
-          <option>By Default</option>
-          <option>A-Z</option>
-          <option>Z-A</option>
-        </select>
+      <select
+        name="alphOrder"
+        value={options.alphOrder}
+        className="selectFilter"
+        onChange={handleChange}
+      >
+        <option>By Default</option>
+        <option>A-Z</option>
+        <option>Z-A</option>
+      </select>
 
-        <select
-          name="scoreOrder"
-          value={filters.scoreOrder}
-          onChange={handleChanges}
-          className="selectFilter"
-        >
-          <option>Health score</option>
-          <option>100 - 0</option>
-          <option>0 - 100</option>
-        </select>
-      </form>
+      <select
+        name="scoreOrder"
+        value={options.scoreOrder}
+        className="selectFilter"
+        onChange={handleChange}
+      >
+        <option>Health score</option>
+        <option>100 - 0</option>
+        <option>0 - 100</option>
+      </select>
+
       <button onClick={handleAll} className="btn">
         All
       </button>
-    </>
+    </div>
   );
 }
