@@ -42,9 +42,10 @@ const rootReducer = (state = initialState, action) => {
         currentPage: action.payload,
       };
     case FILTER_BY_NAME:
-      let recipesMatched = [...state.filteredRecipes].filter((recipe) =>
+      /*let recipesMatched = [...state.filteredRecipes].filter((recipe) =>
         recipe.title.toUpperCase().includes(action.payload.toUpperCase())
       );
+      let recipesMatched = [...state.filteredRecipes]
 
       if (recipesMatched.length === 0) {
         recipesMatched = [...state.filteredRecipes];
@@ -53,9 +54,18 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         filteredRecipes: recipesMatched,
+      };*/
+      const recipesMatched = action.payload.filter((recipe) =>
+        [...state.filteredRecipes].some(
+          (filteredRecipe) => filteredRecipe.id === recipe.id
+        )
+      );
+      return {
+        ...state,
+        filteredRecipes: recipesMatched,
       };
     case FILTER_BY_DIET:
-      console.log(action.payload)
+      console.log(action.payload);
       const filteredByDiet = [...state.filteredRecipes].filter((recipe) =>
         recipe.diet.includes(action.payload)
       );

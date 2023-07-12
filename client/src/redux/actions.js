@@ -23,7 +23,16 @@ export const getHomeRecipes = () => {
 };
 
 export const filterByName = (input) => {
-  return { type: FILTER_BY_NAME, payload: input };
+  // return { type: FILTER_BY_NAME, payload: input };
+  return async(dispatch) => {
+    try {
+      const {data} = await axios.get(`http://localhost:3001/recipes/name?name=${input}`)
+      console.log(data)
+      dispatch( {type: FILTER_BY_NAME, payload: data})
+    } catch (error) {
+      
+    }
+  }
 };
 
 export const filterByDiet = (diet) => {
