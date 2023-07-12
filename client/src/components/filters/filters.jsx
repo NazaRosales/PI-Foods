@@ -23,7 +23,7 @@ export default function Filters() {
     scoreOrder: "Health score",
   });
 
-  const handleAll = () => {
+  const handleClear = () => {
     setOptions({
       input: "",
       diet: "All Diets",
@@ -117,8 +117,8 @@ export default function Filters() {
         <option>0 - 100</option>
       </select>
 
-      <button onClick={handleAll} className="btn">
-        All
+      <button onClick={handleClear} className="btn">
+        clear
       </button>
     </div>
   );
